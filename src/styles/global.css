@@ -1,0 +1,491 @@
+:root {
+  --bg: #f4f1ff;
+  --card: #ffffff;
+  --ink: #2d2a4a;
+  --ink-soft: #6b6890;
+  --primary: #6c5ce7;
+  --primary-dark: #5a4bd4;
+  --accent: #ff6392;
+  --green: #2ec4b6;
+  --gold: #ffd23f;
+  --danger: #ef476f;
+  --shadow: 0 8px 0 rgba(45, 42, 74, 0.12);
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 10%, #fff 0%, var(--bg) 45%, #e9e3ff 100%);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.title {
+  font-family: 'Anton', 'Fredoka', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 32px;
+}
+
+/* --- Barre du haut --- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.brand {
+  font-size: 28px;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.coin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 18px;
+  box-shadow: 0 4px 0 rgba(45, 42, 74, 0.1);
+}
+
+.coin-badge .coin {
+  width: 24px;
+  height: 24px;
+}
+
+.back-btn {
+  background: var(--card);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 4px 0 rgba(45, 42, 74, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --- Cartes / boutons principaux --- */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.tile {
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  transition: transform 0.08s ease;
+  color: var(--ink);
+}
+
+.tile:active {
+  transform: translateY(3px);
+}
+
+.tile .emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.tile .tile-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.tile .tile-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 16px 26px;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 6px 0 var(--primary-dark);
+  transition: transform 0.06s ease;
+  width: 100%;
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--primary-dark);
+}
+
+.btn.secondary {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 6px 0 rgba(45, 42, 74, 0.12);
+}
+
+.btn.accent {
+  background: var(--accent);
+  box-shadow: 0 6px 0 #d94578;
+}
+
+.btn.green {
+  background: var(--green);
+  box-shadow: 0 6px 0 #24a89c;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* --- Divers --- */
+.center {
+  text-align: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.section-title {
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  background: #efeaff;
+  color: var(--primary-dark);
+  border: 2px solid transparent;
+}
+
+.pill.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* --- Choix de réponse --- */
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.choice {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 18px;
+  font-size: 26px;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  color: var(--ink);
+  border: 3px solid transparent;
+}
+
+.choice.correct {
+  border-color: var(--green);
+  background: #e6fbf7;
+}
+
+.choice.wrong {
+  border-color: var(--danger);
+  background: #ffe9ef;
+}
+
+.choice:disabled {
+  cursor: default;
+}
+
+.prompt-big {
+  font-family: 'Anton', sans-serif;
+  font-size: 56px;
+  text-align: center;
+  color: var(--ink);
+  margin: 10px 0;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 10px 0 4px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d8d2f5;
+}
+
+.dot.done {
+  background: var(--green);
+}
+
+.dot.current {
+  background: var(--primary);
+}
+
+.feedback {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  min-height: 28px;
+  margin-top: 14px;
+}
+
+.feedback.good {
+  color: var(--green);
+}
+
+.feedback.bad {
+  color: var(--danger);
+}
+
+/* --- Boutique / éditeur : grille d'options --- */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.option {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 4px 0 rgba(45, 42, 74, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 3px solid transparent;
+  position: relative;
+  color: var(--ink);
+}
+
+.option.selected {
+  border-color: var(--primary);
+}
+
+.option .price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.option .swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+}
+
+.option .lock {
+  font-size: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--card);
+  color: var(--ink-soft);
+  box-shadow: 0 3px 0 rgba(45, 42, 74, 0.08);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.avatar-stage {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  background: linear-gradient(160deg, #fff, #efeaff);
+  border-radius: var(--radius);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  z-index: 50;
+  animation: pop 0.2s ease;
+}
+
+@keyframes pop {
+  from {
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Mini-jeu --- */
+.game-arena {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: linear-gradient(160deg, #d6f3ff, #eae0ff);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  touch-action: manipulation;
+}
+
+.falling-coin {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.05s;
+}
+
+.falling-coin:active {
+  transform: scale(0.85);
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 12px 2px;
+}
+
+.hearts {
+  letter-spacing: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1b33;
+    --card: #2a2748;
+    --ink: #f2f0ff;
+    --ink-soft: #a9a4d0;
+  }
+  body {
+    background: radial-gradient(circle at 20% 10%, #2a2748 0%, #1e1b33 55%, #141226 100%);
+  }
+  .choice,
+  .option,
+  .tab,
+  .tile,
+  .coin-badge,
+  .back-btn,
+  .card {
+    color: var(--ink);
+  }
+}
