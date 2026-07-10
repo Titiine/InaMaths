@@ -38,6 +38,13 @@ const fr = {
   home_hello: 'Bonjour !',
   chooseLanguage: 'Choisir la langue',
 
+  // « Comment ça marche » (accueil)
+  howto_title: 'Comment ça marche ?',
+  howto_step1: 'Choisis un niveau et fais des exercices de maths ou de formes.',
+  howto_step2: 'Chaque bonne réponse te fait gagner des pièces 🪙.',
+  howto_step3: 'Avec tes pièces, achète des habits et personnalise ton avatar (monstre, humain, animal ou robot).',
+  howto_step4: 'Dépense aussi tes pièces pour jouer au mini-jeu… mais attention, si tu perds, le jeu disparaît !',
+
   // Choix des exercices
   chooseLevel: 'Choisis ton niveau',
   chooseExercise: 'Choisis ton exercice',
@@ -149,6 +156,12 @@ const en: typeof fr = {
   home_game: 'Mini-game',
   home_hello: 'Hello!',
   chooseLanguage: 'Choose language',
+
+  howto_title: 'How does it work?',
+  howto_step1: 'Pick a level and do maths or shapes exercises.',
+  howto_step2: 'Every correct answer earns you coins 🪙.',
+  howto_step3: 'Spend your coins on clothes and customise your avatar (monster, human, animal or robot).',
+  howto_step4: 'Use coins to play the mini-game too… but careful, if you lose, the game disappears!',
 
   chooseLevel: 'Choose your level',
   chooseExercise: 'Choose your exercise',

@@ -44,6 +44,30 @@ export function HomeScreen({ navigate }: { navigate: (r: Route) => void }) {
         </button>
       </div>
 
+      <div className="card howto" style={{ marginTop: 22 }}>
+        <h2 className="section-title" style={{ marginBottom: 12 }}>
+          💡 {t('howto_title')}
+        </h2>
+        <ol className="howto-list">
+          <li>
+            <span className="howto-num">1</span>
+            <span>{t('howto_step1')}</span>
+          </li>
+          <li>
+            <span className="howto-num">2</span>
+            <span>{t('howto_step2')}</span>
+          </li>
+          <li>
+            <span className="howto-num">3</span>
+            <span>{t('howto_step3')}</span>
+          </li>
+          <li>
+            <span className="howto-num">4</span>
+            <span>{t('howto_step4')}</span>
+          </li>
+        </ol>
+      </div>
+
       <div className="row" style={{ justifyContent: 'center', marginTop: 22, flexWrap: 'wrap' }}>
         {LANGUAGES.map((l) => (
           <button

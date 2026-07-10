@@ -34,6 +34,19 @@ npm run build    # build de production dans dist/
 npm run preview  # prévisualiser le build
 ```
 
+## 📦 Build prêt à l'emploi (`dist.zip`)
+
+Le fichier **`dist.zip`** à la racine contient le build de production complet
+(`index.html`, `assets/` et `favicon.svg`). Il suffit de le décompresser et de
+servir le dossier obtenu avec n'importe quel serveur de fichiers statiques :
+
+```bash
+unzip dist.zip -d inamaths-build
+npx serve inamaths-build      # ou tout autre serveur statique
+```
+
+> Ce zip est régénéré avec `npm run build` puis, depuis `dist/`, `zip -r ../dist.zip .`.
+
 ## 🗂️ Structure
 
 ```
