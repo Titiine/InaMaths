@@ -1,7 +1,7 @@
 // ============ Configuration AbiAuto ============
 
 // Lien vers votre profil / boutique Leboncoin (remplacez par votre vraie adresse).
-const LEBONCOIN_PROFILE = "https://www.leboncoin.fr/profil/VOTRE_PROFIL";
+const LEBONCOIN_PROFILE = "https://www.leboncoin.fr/profile/4dcd2995-01e9-4c3a-a393-1e9140d98d0f/offers";
 
 // Prise de rendez-vous en ligne (optionnel) : collez ici votre lien Calendly / Google
 // Agenda (ex: "https://calendly.com/abiauto/essai"). Laissez "" pour ne rien afficher.
