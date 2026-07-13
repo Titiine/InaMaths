@@ -86,7 +86,7 @@
       : "";
     const cta = car.vendu
       ? `<p class="sold-note">Ce véhicule a été vendu. Appelez-moi, je peux vous trouver le même ! 📞</p>
-         <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
+         <a href="tel:+33601106358" class="btn btn-primary btn-block">Me contacter</a>`
       : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `
       ${carGallery(car)}
