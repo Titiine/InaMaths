@@ -61,7 +61,7 @@
         <div class="car-body">
           <h3>${car.marque} ${car.modele}</h3>
           <p class="car-sub">${car.annee} • ${km(car.km)}</p>
-          <div class="car-tags">${badge(car.carburant)}${badge(car.boite)}${badge(car.puissance)}</div>
+          <div class="car-tags">${badge(car.carburant)}${badge(car.boite)}${car.puissance ? badge(car.puissance) : ""}</div>
           <button class="btn btn-outline btn-block" data-detail="${car.id}">Voir la fiche</button>
         </div>
       </article>`;
@@ -99,7 +99,7 @@
           <div><dt>Kilométrage certifié</dt><dd>${km(car.km)}</dd></div>
           <div><dt>Carburant</dt><dd>${car.carburant}</dd></div>
           <div><dt>Boîte</dt><dd>${car.boite}</dd></div>
-          <div><dt>Puissance</dt><dd>${car.puissance}</dd></div>
+          ${car.puissance ? `<div><dt>Puissance</dt><dd>${car.puissance}</dd></div>` : ""}
           <div><dt>Places</dt><dd>${car.places}</dd></div>
         </dl>
         ${cta}

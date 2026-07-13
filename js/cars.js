@@ -23,10 +23,10 @@ const BOOKING_URL = "";
 // Leboncoin dans le champ "annonce".
 const CARS = [
   {
-    id: 1, marque: "Peugeot", modele: "208", annee: 2019,
-    prix: 9990, km: 85000, carburant: "Essence", boite: "Manuelle",
-    puissance: "82 ch", places: 5, couleur: "#8e44ad",
-    desc: "Citadine fiable et économique, entretenue et prête à rouler. Contrôle technique à jour, véhicule en parfait état.",
+    id: 1, marque: "Peugeot", modele: "208", annee: 2018,
+    prix: 6990, km: 98000, carburant: "Essence", boite: "Automatique",
+    puissance: "", places: 5, couleur: "#8e44ad",
+    desc: "Boîte automatique, essence, Crit'Air 1 : très économique, parfaite pour rouler sur Paris et idéale pour les nouveaux permis. Ex-administration française, donc entretenue régulièrement chez Peugeot. Très bon état extérieur comme intérieur, non-fumeur, contrôle technique OK. Équipée : CarPlay, GPS, écran tactile, radar de recul, régulateur/limiteur de vitesse, Bluetooth, climatisation, feux LED diurnes, volant cuir multifonctions… Prix négociable dans la limite du raisonnable.",
     annonce: "", site: "Leboncoin", vendu: false
   },
   {
