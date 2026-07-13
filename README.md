@@ -1,11 +1,11 @@
 # AbiAuto 🚗
 
-Site vitrine d'un **mandataire automobile** expérimenté basé à **Évry (Île-de-France)**.
+Site vitrine d'un **conseiller automobile** expérimenté basé à **Évry (Île-de-France)**.
 En partenariat avec des professionnels (garage mécanique, carrosserie).
 Site statique HTML/CSS/JS, sans dépendance externe.
 
 ## Contenu
-- Page d'accueil (présentation mandataire, statistiques)
+- Page d'accueil (présentation du conseiller, statistiques)
 - Catalogue de véhicules avec **filtres** (marque, carburant, budget, recherche)
 - Fiche détaillée de chaque véhicule (fenêtre modale)
 - **Intégration Leboncoin** : lien vers chaque annonce + lien vers le profil
