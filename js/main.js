@@ -1,4 +1,4 @@
-/* ================= AbiAuto — logique du site ================= */
+/* ================= AbiAuto : logique du site ================= */
 (function () {
   "use strict";
 
@@ -98,7 +98,7 @@
       ? `<a href="${car.annonce}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur ${car.site} ↗</a>`
       : "";
     const cta = car.vendu
-      ? `<p class="sold-note">Ce véhicule a été vendu — appelez-moi, je peux vous trouver le même ! 📞</p>
+      ? `<p class="sold-note">Ce véhicule a été vendu. Appelez-moi, je peux vous trouver le même ! 📞</p>
          <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
       : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `

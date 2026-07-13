@@ -1,4 +1,4 @@
-/* ================= InaAuto — styles ================= */
+/* ================= AbiAuto : styles ================= */
 :root {
   --bg: #0b1020;
   --surface: #ffffff;
@@ -15,6 +15,8 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+[hidden] { display: none !important; }
 
 html { scroll-behavior: smooth; }
 
@@ -223,6 +225,21 @@ a { color: inherit; text-decoration: none; }
 .tl-body h3 { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .tl-time { background: #eef4ff; color: var(--accent); font-size: .75rem; font-weight: 700; padding: .15rem .6rem; border-radius: 999px; white-space: nowrap; }
 .tl-body p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
+.tl-list { list-style: none; margin-top: .5rem; display: flex; flex-direction: column; gap: .3rem; }
+.tl-list li { color: var(--text); font-size: .92rem; font-weight: 600; }
+
+/* Étiquettes d'étapes (formule express) */
+.step-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin-top: .9rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: #fff; border: 1.5px solid #fdba74; color: #9a3412;
+  font-weight: 700; font-size: .82rem; padding: .35rem .75rem .35rem .35rem; border-radius: 999px;
+}
+.chip-num {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 800;
+}
+.chip-arrow { color: #ea580c; font-weight: 800; }
 
 /* ---------- Processus : colonne réassurance ---------- */
 .process-side { display: flex; flex-direction: column; gap: 1.2rem; }

@@ -1,7 +1,7 @@
 # AbiAuto 🚗
 
-Site vitrine d'un **mandataire automobile** basé à **Évry (Île-de-France)**, actif depuis 2020.
-En partenariat avec des professionnels (garage mécanique, carrosserie, financement).
+Site vitrine d'un **mandataire automobile** expérimenté basé à **Évry (Île-de-France)**.
+En partenariat avec des professionnels (garage mécanique, carrosserie).
 Site statique HTML/CSS/JS, sans dépendance externe.
 
 ## Contenu
