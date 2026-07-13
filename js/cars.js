@@ -41,7 +41,7 @@ const CARS = [
     id: 3, marque: "Renault", modele: "Modus Expression", annee: 2009,
     prix: 4490, km: 126000, carburant: "Diesel", boite: "Manuelle",
     puissance: "86 ch", places: 5, couleur: "#2980b9",
-    desc: "Monospace 1.5 dCi 90 Expression Euro 5, première main, 126 000 km certifiés. Ex-administration française (véhicule français), entretiens réguliers chez Renault, très bon état extérieur comme intérieur. Contrôle technique de moins de 6 mois. Idéal jeunes conducteurs : consomme très peu, assurance pas chère, véhicule économique. Équipée : climatisation, régulateur/limiteur de vitesse, radio CD, vitres et rétroviseurs électriques, fixations ISOFIX… Prix à débattre dans la limite du raisonnable.",
+    desc: "Monospace 1.5 dCi 90 Expression, première main, mise en circulation 01/2009, 126 000 km certifiés. Seulement 4,1 L/100 km et 5 CV fiscaux : très économique, assurance pas chère, idéal jeunes conducteurs. Ex-administration française (véhicule français), entretiens réguliers chez Renault, très bon état extérieur comme intérieur, contrôle technique de moins de 6 mois. Couleur marron clair métallisé, sellerie tissu gris, 5 portes / 5 places. Équipée : climatisation, régulateur/limiteur de vitesse, radio CD, vitres et rétroviseurs électriques, fixations ISOFIX… Prix à débattre dans la limite du raisonnable.",
     annonce: "", site: "Leboncoin", vendu: false
   }
 ];
