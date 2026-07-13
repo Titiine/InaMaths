@@ -1,4 +1,4 @@
-/* ================= InaAuto — logique du site ================= */
+/* ================= AbiAuto — logique du site ================= */
 (function () {
   "use strict";
 
@@ -9,6 +9,7 @@
   const fCarburant = document.getElementById("fCarburant");
   const fPrix = document.getElementById("fPrix");
   const fSearch = document.getElementById("fSearch");
+  const fVendus = document.getElementById("fVendus");
   const btnReset = document.getElementById("btnReset");
 
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
@@ -38,10 +39,12 @@
 
   function carCard(car) {
     return `
-      <article class="car-card" data-id="${car.id}">
+      <article class="car-card ${car.vendu ? "is-sold" : ""}" data-id="${car.id}">
         <div class="car-media">${carThumb(car)}
           <span class="car-price">${euro(car.prix)}</span>
-          ${car.leboncoin ? '<span class="car-lbc">Sur Leboncoin</span>' : ''}
+          ${car.vendu
+            ? '<span class="car-sold">Vendu</span>'
+            : (car.annonce ? `<span class="car-lbc">Sur ${car.site}</span>` : "")}
         </div>
         <div class="car-body">
           <h3>${car.marque} ${car.modele}</h3>
@@ -64,6 +67,7 @@
   function applyFilters() {
     const q = fSearch.value.trim().toLowerCase();
     const list = CARS.filter((c) => {
+      if (c.vendu && !fVendus.checked) return false;
       if (fMarque.value && c.marque !== fMarque.value) return false;
       if (fCarburant.value && c.carburant !== fCarburant.value) return false;
       if (fPrix.value && c.prix > Number(fPrix.value)) return false;
@@ -90,25 +94,28 @@
   const modalContent = document.getElementById("modalContent");
 
   function openModal(car) {
-    const lbcBtn = car.leboncoin
-      ? `<a href="${car.leboncoin}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur Leboncoin ↗</a>`
+    const annonceBtn = car.annonce && !car.vendu
+      ? `<a href="${car.annonce}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur ${car.site} ↗</a>`
       : "";
+    const cta = car.vendu
+      ? `<p class="sold-note">Ce véhicule a été vendu — appelez-moi, je peux vous trouver le même ! 📞</p>
+         <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
+      : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `
       <div class="modal-media">${carThumb(car)}</div>
       <div class="modal-info">
-        <h2>${car.marque} ${car.modele}</h2>
+        <h2>${car.marque} ${car.modele} ${car.vendu ? '<span class="tag tag-sold">Vendu</span>' : ""}</h2>
         <p class="modal-price">${euro(car.prix)}</p>
         <p class="modal-desc">${car.desc}</p>
         <dl class="specs">
           <div><dt>Année</dt><dd>${car.annee}</dd></div>
-          <div><dt>Kilométrage</dt><dd>${km(car.km)}</dd></div>
+          <div><dt>Kilométrage certifié</dt><dd>${km(car.km)}</dd></div>
           <div><dt>Carburant</dt><dd>${car.carburant}</dd></div>
           <div><dt>Boîte</dt><dd>${car.boite}</dd></div>
           <div><dt>Puissance</dt><dd>${car.puissance}</dd></div>
           <div><dt>Places</dt><dd>${car.places}</dd></div>
         </dl>
-        <a href="#contact" class="btn btn-primary btn-block" data-close>Demander un essai</a>
-        ${lbcBtn}
+        ${cta}
       </div>`;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -120,10 +127,11 @@
   }
 
   /* --- Événements --- */
-  [fMarque, fCarburant, fPrix].forEach((el) => el.addEventListener("change", applyFilters));
+  [fMarque, fCarburant, fPrix, fVendus].forEach((el) => el.addEventListener("change", applyFilters));
   fSearch.addEventListener("input", applyFilters);
   btnReset.addEventListener("click", () => {
     fMarque.value = ""; fCarburant.value = ""; fPrix.value = ""; fSearch.value = "";
+    fVendus.checked = false;
     applyFilters();
   });
 
@@ -149,7 +157,7 @@
     if (e.target.tagName === "A") mainNav.classList.remove("open");
   });
 
-  /* --- Formulaire de contact (démo, pas d'envoi réel) --- */
+  /* --- Formulaire de contact / RDV (démo, pas d'envoi réel) --- */
   const form = document.getElementById("contactForm");
   const feedback = document.getElementById("formFeedback");
   form.addEventListener("submit", (e) => {
@@ -162,13 +170,21 @@
     }
     feedback.hidden = false;
     feedback.className = "form-feedback success";
-    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, nous vous recontactons rapidement.";
+    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, je vous rappelle très vite.";
     form.reset();
   });
 
   /* --- Init --- */
   const lbcProfile = document.getElementById("lbcProfileLink");
   if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
+
+  // Bouton de réservation en ligne (Calendly ou autre) : ne s'affiche que si BOOKING_URL est renseigné.
+  const bookingBtn = document.getElementById("bookingBtn");
+  if (bookingBtn && typeof BOOKING_URL === "string" && BOOKING_URL) {
+    bookingBtn.href = BOOKING_URL;
+    bookingBtn.hidden = false;
+  }
+
   document.getElementById("year").textContent = new Date().getFullYear();
   populateFilters();
   applyFilters();

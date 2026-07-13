@@ -195,10 +195,94 @@ a { color: inherit; text-decoration: none; }
 .specs dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); font-weight: 700; }
 .specs dd { font-size: 1.05rem; font-weight: 700; margin-top: .2rem; }
 
+/* ---------- Hero réduit (pages internes) ---------- */
+.hero-small { padding: 3.5rem 0 3rem; }
+.hero-small h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+.link-light { color: #ffb599; text-decoration: underline; }
+
+/* ---------- Filtre vendus ---------- */
+.field-check { justify-content: flex-end; }
+.check-label { display: flex !important; flex-direction: row !important; align-items: center; gap: .5rem !important; text-transform: none !important; letter-spacing: 0 !important; font-size: .88rem !important; cursor: pointer; }
+.check-label input { width: 1.05rem; height: 1.05rem; accent-color: var(--primary); }
+
+/* ---------- Carte véhicule vendu ---------- */
+.car-card.is-sold .car-thumb { filter: grayscale(.85) brightness(.75); }
+.car-sold {
+  position: absolute; top: 10px; left: 10px; background: #1f2937; color: #fff;
+  font-weight: 800; padding: .25rem .7rem; border-radius: 999px; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.tag-sold { background: #1f2937; color: #fff; border: none; vertical-align: middle; }
+.sold-note { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; padding: .8rem 1rem; border-radius: 10px; margin-bottom: .8rem; font-weight: 600; }
+
+/* ---------- Processus : frise chronologique ---------- */
+.process-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2.5rem; align-items: start; }
+.timeline { list-style: none; position: relative; padding-left: 0; }
+.timeline::before {
+  content: ""; position: absolute; left: 21px; top: 10px; bottom: 10px;
+  width: 3px; background: linear-gradient(var(--primary), #ffd0bd); border-radius: 2px;
+}
+.timeline li { display: flex; gap: 1.1rem; padding: 0 0 1.8rem; position: relative; }
+.tl-num {
+  flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary); color: #fff; font-weight: 800; font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center; z-index: 1;
+  box-shadow: 0 0 0 5px #fff, var(--shadow);
+}
+.tl-body h3 { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.tl-time { background: #eef4ff; color: var(--accent); font-size: .75rem; font-weight: 700; padding: .15rem .6rem; border-radius: 999px; white-space: nowrap; }
+.tl-body p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
+
+/* ---------- Processus : colonne réassurance ---------- */
+.process-side { display: flex; flex-direction: column; gap: 1.2rem; }
+.process-side > div { border-radius: var(--radius); padding: 1.4rem 1.5rem; border: 1px solid var(--border); }
+.process-side h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+.process-side p, .process-side li { font-size: .93rem; color: var(--muted); }
+.process-side ul { list-style: none; margin-top: .6rem; display: flex; flex-direction: column; gap: .45rem; }
+.express-card { background: linear-gradient(135deg, #fff7ed, #ffedd5); border-color: #fed7aa !important; }
+.express-card h3 { color: #9a3412; }
+.express-note { margin-top: .8rem; font-weight: 700; color: #9a3412 !important; }
+.included-card { background: #f0fdf4; border-color: #bbf7d0 !important; }
+.included-card h3 { color: #166534; }
+.included-sub strong { color: #166534; }
+.origin-card { background: #eff6ff; border-color: #bfdbfe !important; }
+.origin-card h3 { color: #1e40af; }
+.after-card { background: var(--surface-alt); }
+
+/* ---------- RDV ---------- */
+.rdv-actions { display: flex; flex-direction: column; gap: .9rem; align-items: center; }
+.btn-lg { padding: 1rem 2rem; font-size: 1.05rem; }
+.rdv-note { text-align: center; color: var(--muted); margin-top: 1.2rem; font-size: .9rem; }
+
+/* ---------- Page conseils ---------- */
+.advice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.4rem; }
+.advice-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+.advice-card h3 { font-size: 1.15rem; display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .6rem; }
+.advice-brand { font-size: .75rem; font-weight: 600; color: var(--muted); background: var(--surface-alt); padding: .15rem .6rem; border-radius: 999px; }
+.advice-card p { color: var(--muted); font-size: .93rem; margin-top: .5rem; }
+.advice-card p strong { color: var(--text); }
+
+.table-wrap { overflow-x: auto; }
+.usage-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.usage-table th, .usage-table td { padding: .95rem 1.1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.usage-table th { background: var(--bg); color: #fff; font-size: .85rem; text-transform: uppercase; letter-spacing: .5px; }
+.usage-table td { font-size: .93rem; color: var(--muted); }
+.usage-table td strong { color: var(--primary); }
+.usage-table small { color: var(--muted); }
+
+.faq { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: .8rem; }
+.faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.3rem; }
+.faq summary { font-weight: 700; cursor: pointer; }
+.faq details p { color: var(--muted); margin-top: .7rem; font-size: .95rem; }
+.faq a { color: var(--accent); text-decoration: underline; }
+.advice-cta { text-align: center; margin-top: 2.5rem; }
+.advice-cta p { color: var(--muted); margin-bottom: 1rem; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .searchbar { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
   .nav-toggle { display: block; }
@@ -228,7 +312,9 @@ a { color: inherit; text-decoration: none; }
       </a>
       <nav class="main-nav" id="mainNav">
         <a href="#catalogue">Catalogue</a>
-        <a href="#pourquoi">Pourquoi nous</a>
+        <a href="#processus">Comment ça se passe</a>
+        <a href="AbiAuto-conseils.html">Conseils</a>
+        <a href="#rdv">Essai / RDV</a>
         <a href="#contact">Contact</a>
         <a href="tel:+33123456789" class="btn btn-outline btn-sm">📞 01 23 45 67 89</a>
       </nav>
@@ -286,6 +372,9 @@ a { color: inherit; text-decoration: none; }
           <label for="fSearch">Recherche</label>
           <input type="search" id="fSearch" placeholder="Ex : Clio, SUV, break…" />
         </div>
+        <div class="field field-check">
+          <label class="check-label"><input type="checkbox" id="fVendus" /> Afficher aussi les véhicules vendus</label>
+        </div>
         <button class="btn btn-primary" id="btnReset" type="button">Réinitialiser</button>
       </div>
     </div>
@@ -320,12 +409,139 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
+  <!-- ============ PROCESSUS DE VENTE ============ -->
+  <section class="section" id="processus">
+    <div class="container">
+      <div class="section-head">
+        <h2>Comment ça se passe ?</h2>
+        <p>Un processus rodé, transparent et rapide — possible en une seule journée.</p>
+      </div>
+
+      <div class="process-grid">
+        <!-- Frise chronologique -->
+        <ol class="timeline">
+          <li>
+            <span class="tl-num">1</span>
+            <div class="tl-body">
+              <h3>On s'appelle 📞 <span class="tl-time">5 min</span></h3>
+              <p>Je privilégie le téléphone : c'est le plus rapide pour bien cerner votre besoin
+              et répondre à toutes vos questions. Je suis très disponible.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">2</span>
+            <div class="tl-body">
+              <h3>Visite &amp; essai sur route 🚗 <span class="tl-time">30–45 min</span></h3>
+              <p>Vous voyez le véhicule à Évry et vous l'<strong>essayez réellement sur route</strong> —
+              ce que les garages ne proposent presque jamais. Vous validez en conditions réelles.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">3</span>
+            <div class="tl-body">
+              <h3>Réservation (acompte) 🤝 <span class="tl-time">10 min</span></h3>
+              <p>Un simple acompte bloque le véhicule pour vous. Aucun frais caché,
+              le prix annoncé est le prix payé.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">4</span>
+            <div class="tl-body">
+              <h3>Papiers &amp; carte grise 📄 <span class="tl-time">dans la journée</span></h3>
+              <p>Nous allons <strong>ensemble</strong> au service agréé carte grise, juste à côté :
+              la demande est faite devant vous. Zéro doute possible (véhicule garanti non volé,
+              non gagé, existant) — c'est vérifié officiellement, sous vos yeux.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">5</span>
+            <div class="tl-body">
+              <h3>Paiement sécurisé 💶 <span class="tl-time">15 min</span></h3>
+              <p>Virement instantané, ou virement classique : <strong>je vous accompagne à votre banque</strong>
+              si vous préférez. Simple et sécurisé pour tout le monde.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">6</span>
+            <div class="tl-body">
+              <h3>Remise des clés 🔑 <span class="tl-time">le jour même</span></h3>
+              <p>Double de clés généralement fourni (offert s'il manque — clé complexe possible
+              dans la journée en service additionnel). Et vous repartez au volant !</p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Colonne réassurance -->
+        <div class="process-side">
+          <div class="express-card">
+            <h3>⚡ Formule express : achetez et roulez le jour même</h3>
+            <p>Si vous êtes disponible, tout peut se faire en une journée. Il ne faut que 3 choses :</p>
+            <ul>
+              <li>🪪 Votre pièce d'identité</li>
+              <li>🏠 Un justificatif de domicile</li>
+              <li>🛡️ Assurer le véhicule — ça se fait dans la journée, souvent par simple appel
+                  à votre assureur avec l'immatriculation que je vous donne</li>
+            </ul>
+            <p class="express-note">Paiement par virement instantané → remise des clés → vous êtes assuré, vous roulez. ✅</p>
+          </div>
+
+          <div class="included-card">
+            <h3>✅ Inclus d'office, 0 € de supplément</h3>
+            <p class="included-sub">La préparation complète est comprise — en concession, elle est
+            généralement facturée <strong>500 à 800 €</strong> en plus.</p>
+            <ul class="included-list">
+              <li>🛞 Freins et disques vérifiés / remplacés si besoin</li>
+              <li>⚙️ Courroie de distribution faite si nécessaire</li>
+              <li>🔍 Contrôle technique à jour</li>
+              <li>🧼 Nettoyage complet intérieur / extérieur</li>
+              <li>🔑 Double de clés (offert s'il n'était pas fourni)</li>
+              <li>🚗 Essai sur route systématique avant achat</li>
+            </ul>
+          </div>
+
+          <div class="origin-card">
+            <h3>🏛️ D'où viennent mes véhicules ?</h3>
+            <p>Tous mes véhicules proviennent des <strong>ministères</strong> (anciens véhicules de
+            fonction de l'État) : suivi d'entretien périodique en concession, souvent dans les
+            garages de la marque, et <strong>kilométrage certifié réel</strong> (certificat à l'appui).</p>
+          </div>
+
+          <div class="after-card">
+            <h3>🤝 Et après l'achat ?</h3>
+            <p>Je reste joignable : une fonctionnalité que vous ne trouvez pas, un réglage,
+            une question sur l'entretien… revenez vers moi, je vous aide. L'accompagnement
+            ne s'arrête pas à la remise des clés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RDV / ESSAI ============ -->
+  <section class="section section-alt" id="rdv">
+    <div class="container">
+      <div class="section-head">
+        <h2>Réserver un essai sur route</h2>
+        <p>Le plus simple et le plus rapide : <strong>appelez-moi directement</strong>.
+        Je diagnostique votre besoin en 5 minutes et on fixe un créneau.</p>
+      </div>
+      <div class="rdv-actions">
+        <a href="tel:+33123456789" class="btn btn-primary btn-lg">📞 01 23 45 67 89 — réponse rapide</a>
+        <a href="#contact" class="btn btn-outline btn-lg">Ou laissez-moi un message avec vos disponibilités</a>
+        <a href="#" id="bookingBtn" class="btn btn-lbc btn-lg" target="_blank" rel="noopener" hidden>📅 Réserver un créneau en ligne</a>
+      </div>
+      <p class="rdv-note">Disponible du lundi au samedi, 9h – 19h. Essais à Évry-Courcouronnes (91).</p>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="section" id="contact">
     <div class="container contact-grid">
       <div>
-        <h2>Contactez-nous</h2>
-        <p>Une question sur un véhicule ? Envie d'un essai ? Écrivez-nous, nous répondons rapidement.</p>
+        <h2>Contactez-moi</h2>
+        <p><strong>Je préfère le téléphone</strong> : contact immédiat, et en quelques questions
+        je cerne précisément votre besoin. Sinon, laissez un message avec vos disponibilités
+        pour un essai, je vous rappelle très vite.</p>
         <ul class="contact-list">
           <li>📍 Évry-Courcouronnes (91), Île-de-France</li>
           <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
@@ -339,6 +555,10 @@ a { color: inherit; text-decoration: none; }
           <label>Email<input type="email" name="email" required /></label>
         </div>
         <label>Véhicule concerné<input type="text" name="vehicule" placeholder="Optionnel" /></label>
+        <div class="form-row">
+          <label>Téléphone<input type="tel" name="telephone" placeholder="Pour vous rappeler" /></label>
+          <label>Disponibilités pour un essai<input type="text" name="dispo" placeholder="Ex : samedi matin" /></label>
+        </div>
         <label>Message<textarea name="message" rows="4" required></textarea></label>
         <button type="submit" class="btn btn-primary">Envoyer la demande</button>
         <p class="form-feedback" id="formFeedback" hidden></p>
@@ -372,12 +592,21 @@ a { color: inherit; text-decoration: none; }
   </div>
 
 <script>
+// ============ Configuration AbiAuto ============
+
 // Lien vers votre profil / boutique Leboncoin (remplacez par votre vraie adresse).
 const LEBONCOIN_PROFILE = "https://www.leboncoin.fr/profil/VOTRE_PROFIL";
 
-// Base de données des véhicules.
-// Remplacez / ajoutez vos propres voitures ici.
-// Champ "leboncoin" : collez l'URL exacte de l'annonce (laissez "" si pas encore publiée).
+// Prise de rendez-vous en ligne (optionnel) : collez ici votre lien Calendly / Google
+// Agenda (ex: "https://calendly.com/abiauto/essai"). Laissez "" pour ne rien afficher.
+const BOOKING_URL = "";
+
+// ============ Base de données des véhicules ============
+// Pour chaque voiture :
+//   - annonce : URL exacte de l'annonce ("" si pas encore publiée)
+//   - site    : "Leboncoin" ou "La Centrale"
+//   - vendu   : true quand le véhicule est vendu / annonce expirée
+//               (il sera masqué par défaut dans le catalogue)
 // Les images utilisent des dégradés SVG intégrés pour rester 100% hors-ligne.
 const CARS = [
   {
@@ -385,88 +614,88 @@ const CARS = [
     prix: 15900, km: 24000, carburant: "Essence", boite: "Manuelle",
     puissance: "90 ch", places: 5, couleur: "#f2b705",
     desc: "Citadine polyvalente, faible consommation, idéale pour la ville comme pour les trajets quotidiens.",
-    leboncoin: "https://www.leboncoin.fr/voitures/DEMO_clio"
+    annonce: "https://www.leboncoin.fr/voitures/DEMO_clio", site: "Leboncoin", vendu: false
   },
   {
     id: 2, marque: "Peugeot", modele: "3008 GT", annee: 2021,
     prix: 28500, km: 41000, carburant: "Diesel", boite: "Automatique",
     puissance: "130 ch", places: 5, couleur: "#0f4c81",
     desc: "SUV familial spacieux, finition GT, intérieur cuir et grand coffre. Très bien entretenu.",
-    leboncoin: ""
+    annonce: "https://www.lacentrale.fr/DEMO_3008", site: "La Centrale", vendu: false
   },
   {
     id: 3, marque: "Tesla", modele: "Model 3", annee: 2023,
     prix: 39900, km: 12000, carburant: "Électrique", boite: "Automatique",
     puissance: "283 ch", places: 5, couleur: "#c0392b",
     desc: "Berline 100% électrique, autonomie 490 km, Autopilot, entretien minimal.",
-    leboncoin: "https://www.leboncoin.fr/voitures/DEMO_model3"
+    annonce: "https://www.leboncoin.fr/voitures/DEMO_model3", site: "Leboncoin", vendu: false
   },
   {
     id: 4, marque: "Volkswagen", modele: "Golf 8", annee: 2020,
     prix: 21900, km: 55000, carburant: "Essence", boite: "Manuelle",
     puissance: "110 ch", places: 5, couleur: "#2c3e50",
     desc: "La référence des compactes. Confort, fiabilité et tenue de route irréprochables.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   },
   {
     id: 5, marque: "Toyota", modele: "Yaris Hybride", annee: 2022,
     prix: 18400, km: 30000, carburant: "Hybride", boite: "Automatique",
     puissance: "116 ch", places: 5, couleur: "#16a085",
     desc: "Hybride auto-rechargeable, ultra économique en ville, fiabilité légendaire Toyota.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   },
   {
     id: 6, marque: "BMW", modele: "Série 1", annee: 2021,
     prix: 26900, km: 38000, carburant: "Diesel", boite: "Automatique",
     puissance: "150 ch", places: 5, couleur: "#34495e",
     desc: "Compacte premium dynamique, pack sport, sièges chauffants et navigation intégrée.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: true
   },
   {
     id: 7, marque: "Audi", modele: "Q5 Quattro", annee: 2019,
     prix: 34500, km: 68000, carburant: "Diesel", boite: "Automatique",
     puissance: "190 ch", places: 5, couleur: "#7f8c8d",
     desc: "SUV premium 4 roues motrices, très confortable, parfait pour les longs trajets et la montagne.",
-    leboncoin: ""
+    annonce: "", site: "La Centrale", vendu: false
   },
   {
     id: 8, marque: "Renault", modele: "Captur E-Tech", annee: 2023,
     prix: 23900, km: 15000, carburant: "Hybride", boite: "Automatique",
     puissance: "145 ch", places: 5, couleur: "#e67e22",
     desc: "SUV urbain hybride rechargeable, look moderne, équipement complet et faible consommation.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   },
   {
     id: 9, marque: "Peugeot", modele: "208 Allure", annee: 2022,
     prix: 16700, km: 27000, carburant: "Essence", boite: "Manuelle",
     puissance: "100 ch", places: 5, couleur: "#8e44ad",
     desc: "Citadine au design affirmé, i-Cockpit 3D, écran tactile et caméra de recul.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: true
   },
   {
     id: 10, marque: "Tesla", modele: "Model Y", annee: 2023,
     prix: 46900, km: 9000, carburant: "Électrique", boite: "Automatique",
     puissance: "351 ch", places: 5, couleur: "#2980b9",
     desc: "SUV électrique spacieux, grande autonomie, coffre géant et technologie de pointe.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   },
   {
     id: 11, marque: "Volkswagen", modele: "T-Roc", annee: 2020,
     prix: 22400, km: 49000, carburant: "Essence", boite: "Manuelle",
     puissance: "115 ch", places: 5, couleur: "#d35400",
     desc: "SUV compact au style jeune, position de conduite surélevée, très agréable au quotidien.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   },
   {
     id: 12, marque: "Toyota", modele: "Corolla TS", annee: 2021,
     prix: 24900, km: 44000, carburant: "Hybride", boite: "Automatique",
     puissance: "122 ch", places: 5, couleur: "#27ae60",
     desc: "Break hybride spacieux et économique, idéal familles et gros rouleurs.",
-    leboncoin: ""
+    annonce: "", site: "Leboncoin", vendu: false
   }
 ];
 
-/* ================= InaAuto — logique du site ================= */
+/* ================= AbiAuto — logique du site ================= */
 (function () {
   "use strict";
 
@@ -477,6 +706,7 @@ const CARS = [
   const fCarburant = document.getElementById("fCarburant");
   const fPrix = document.getElementById("fPrix");
   const fSearch = document.getElementById("fSearch");
+  const fVendus = document.getElementById("fVendus");
   const btnReset = document.getElementById("btnReset");
 
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
@@ -506,10 +736,12 @@ const CARS = [
 
   function carCard(car) {
     return `
-      <article class="car-card" data-id="${car.id}">
+      <article class="car-card ${car.vendu ? "is-sold" : ""}" data-id="${car.id}">
         <div class="car-media">${carThumb(car)}
           <span class="car-price">${euro(car.prix)}</span>
-          ${car.leboncoin ? '<span class="car-lbc">Sur Leboncoin</span>' : ''}
+          ${car.vendu
+            ? '<span class="car-sold">Vendu</span>'
+            : (car.annonce ? `<span class="car-lbc">Sur ${car.site}</span>` : "")}
         </div>
         <div class="car-body">
           <h3>${car.marque} ${car.modele}</h3>
@@ -532,6 +764,7 @@ const CARS = [
   function applyFilters() {
     const q = fSearch.value.trim().toLowerCase();
     const list = CARS.filter((c) => {
+      if (c.vendu && !fVendus.checked) return false;
       if (fMarque.value && c.marque !== fMarque.value) return false;
       if (fCarburant.value && c.carburant !== fCarburant.value) return false;
       if (fPrix.value && c.prix > Number(fPrix.value)) return false;
@@ -558,25 +791,28 @@ const CARS = [
   const modalContent = document.getElementById("modalContent");
 
   function openModal(car) {
-    const lbcBtn = car.leboncoin
-      ? `<a href="${car.leboncoin}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur Leboncoin ↗</a>`
+    const annonceBtn = car.annonce && !car.vendu
+      ? `<a href="${car.annonce}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur ${car.site} ↗</a>`
       : "";
+    const cta = car.vendu
+      ? `<p class="sold-note">Ce véhicule a été vendu — appelez-moi, je peux vous trouver le même ! 📞</p>
+         <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
+      : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `
       <div class="modal-media">${carThumb(car)}</div>
       <div class="modal-info">
-        <h2>${car.marque} ${car.modele}</h2>
+        <h2>${car.marque} ${car.modele} ${car.vendu ? '<span class="tag tag-sold">Vendu</span>' : ""}</h2>
         <p class="modal-price">${euro(car.prix)}</p>
         <p class="modal-desc">${car.desc}</p>
         <dl class="specs">
           <div><dt>Année</dt><dd>${car.annee}</dd></div>
-          <div><dt>Kilométrage</dt><dd>${km(car.km)}</dd></div>
+          <div><dt>Kilométrage certifié</dt><dd>${km(car.km)}</dd></div>
           <div><dt>Carburant</dt><dd>${car.carburant}</dd></div>
           <div><dt>Boîte</dt><dd>${car.boite}</dd></div>
           <div><dt>Puissance</dt><dd>${car.puissance}</dd></div>
           <div><dt>Places</dt><dd>${car.places}</dd></div>
         </dl>
-        <a href="#contact" class="btn btn-primary btn-block" data-close>Demander un essai</a>
-        ${lbcBtn}
+        ${cta}
       </div>`;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -588,10 +824,11 @@ const CARS = [
   }
 
   /* --- Événements --- */
-  [fMarque, fCarburant, fPrix].forEach((el) => el.addEventListener("change", applyFilters));
+  [fMarque, fCarburant, fPrix, fVendus].forEach((el) => el.addEventListener("change", applyFilters));
   fSearch.addEventListener("input", applyFilters);
   btnReset.addEventListener("click", () => {
     fMarque.value = ""; fCarburant.value = ""; fPrix.value = ""; fSearch.value = "";
+    fVendus.checked = false;
     applyFilters();
   });
 
@@ -617,7 +854,7 @@ const CARS = [
     if (e.target.tagName === "A") mainNav.classList.remove("open");
   });
 
-  /* --- Formulaire de contact (démo, pas d'envoi réel) --- */
+  /* --- Formulaire de contact / RDV (démo, pas d'envoi réel) --- */
   const form = document.getElementById("contactForm");
   const feedback = document.getElementById("formFeedback");
   form.addEventListener("submit", (e) => {
@@ -630,13 +867,21 @@ const CARS = [
     }
     feedback.hidden = false;
     feedback.className = "form-feedback success";
-    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, nous vous recontactons rapidement.";
+    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, je vous rappelle très vite.";
     form.reset();
   });
 
   /* --- Init --- */
   const lbcProfile = document.getElementById("lbcProfileLink");
   if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
+
+  // Bouton de réservation en ligne (Calendly ou autre) : ne s'affiche que si BOOKING_URL est renseigné.
+  const bookingBtn = document.getElementById("bookingBtn");
+  if (bookingBtn && typeof BOOKING_URL === "string" && BOOKING_URL) {
+    bookingBtn.href = BOOKING_URL;
+    bookingBtn.hidden = false;
+  }
+
   document.getElementById("year").textContent = new Date().getFullYear();
   populateFilters();
   applyFilters();

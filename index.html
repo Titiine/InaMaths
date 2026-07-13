@@ -18,7 +18,9 @@
       </a>
       <nav class="main-nav" id="mainNav">
         <a href="#catalogue">Catalogue</a>
-        <a href="#pourquoi">Pourquoi nous</a>
+        <a href="#processus">Comment ça se passe</a>
+        <a href="conseils.html">Conseils</a>
+        <a href="#rdv">Essai / RDV</a>
         <a href="#contact">Contact</a>
         <a href="tel:+33123456789" class="btn btn-outline btn-sm">📞 01 23 45 67 89</a>
       </nav>
@@ -76,6 +78,9 @@
           <label for="fSearch">Recherche</label>
           <input type="search" id="fSearch" placeholder="Ex : Clio, SUV, break…" />
         </div>
+        <div class="field field-check">
+          <label class="check-label"><input type="checkbox" id="fVendus" /> Afficher aussi les véhicules vendus</label>
+        </div>
         <button class="btn btn-primary" id="btnReset" type="button">Réinitialiser</button>
       </div>
     </div>
@@ -110,12 +115,139 @@
     </div>
   </section>
 
+  <!-- ============ PROCESSUS DE VENTE ============ -->
+  <section class="section" id="processus">
+    <div class="container">
+      <div class="section-head">
+        <h2>Comment ça se passe ?</h2>
+        <p>Un processus rodé, transparent et rapide — possible en une seule journée.</p>
+      </div>
+
+      <div class="process-grid">
+        <!-- Frise chronologique -->
+        <ol class="timeline">
+          <li>
+            <span class="tl-num">1</span>
+            <div class="tl-body">
+              <h3>On s'appelle 📞 <span class="tl-time">5 min</span></h3>
+              <p>Je privilégie le téléphone : c'est le plus rapide pour bien cerner votre besoin
+              et répondre à toutes vos questions. Je suis très disponible.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">2</span>
+            <div class="tl-body">
+              <h3>Visite &amp; essai sur route 🚗 <span class="tl-time">30–45 min</span></h3>
+              <p>Vous voyez le véhicule à Évry et vous l'<strong>essayez réellement sur route</strong> —
+              ce que les garages ne proposent presque jamais. Vous validez en conditions réelles.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">3</span>
+            <div class="tl-body">
+              <h3>Réservation (acompte) 🤝 <span class="tl-time">10 min</span></h3>
+              <p>Un simple acompte bloque le véhicule pour vous. Aucun frais caché,
+              le prix annoncé est le prix payé.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">4</span>
+            <div class="tl-body">
+              <h3>Papiers &amp; carte grise 📄 <span class="tl-time">dans la journée</span></h3>
+              <p>Nous allons <strong>ensemble</strong> au service agréé carte grise, juste à côté :
+              la demande est faite devant vous. Zéro doute possible (véhicule garanti non volé,
+              non gagé, existant) — c'est vérifié officiellement, sous vos yeux.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">5</span>
+            <div class="tl-body">
+              <h3>Paiement sécurisé 💶 <span class="tl-time">15 min</span></h3>
+              <p>Virement instantané, ou virement classique : <strong>je vous accompagne à votre banque</strong>
+              si vous préférez. Simple et sécurisé pour tout le monde.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tl-num">6</span>
+            <div class="tl-body">
+              <h3>Remise des clés 🔑 <span class="tl-time">le jour même</span></h3>
+              <p>Double de clés généralement fourni (offert s'il manque — clé complexe possible
+              dans la journée en service additionnel). Et vous repartez au volant !</p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Colonne réassurance -->
+        <div class="process-side">
+          <div class="express-card">
+            <h3>⚡ Formule express : achetez et roulez le jour même</h3>
+            <p>Si vous êtes disponible, tout peut se faire en une journée. Il ne faut que 3 choses :</p>
+            <ul>
+              <li>🪪 Votre pièce d'identité</li>
+              <li>🏠 Un justificatif de domicile</li>
+              <li>🛡️ Assurer le véhicule — ça se fait dans la journée, souvent par simple appel
+                  à votre assureur avec l'immatriculation que je vous donne</li>
+            </ul>
+            <p class="express-note">Paiement par virement instantané → remise des clés → vous êtes assuré, vous roulez. ✅</p>
+          </div>
+
+          <div class="included-card">
+            <h3>✅ Inclus d'office, 0 € de supplément</h3>
+            <p class="included-sub">La préparation complète est comprise — en concession, elle est
+            généralement facturée <strong>500 à 800 €</strong> en plus.</p>
+            <ul class="included-list">
+              <li>🛞 Freins et disques vérifiés / remplacés si besoin</li>
+              <li>⚙️ Courroie de distribution faite si nécessaire</li>
+              <li>🔍 Contrôle technique à jour</li>
+              <li>🧼 Nettoyage complet intérieur / extérieur</li>
+              <li>🔑 Double de clés (offert s'il n'était pas fourni)</li>
+              <li>🚗 Essai sur route systématique avant achat</li>
+            </ul>
+          </div>
+
+          <div class="origin-card">
+            <h3>🏛️ D'où viennent mes véhicules ?</h3>
+            <p>Tous mes véhicules proviennent des <strong>ministères</strong> (anciens véhicules de
+            fonction de l'État) : suivi d'entretien périodique en concession, souvent dans les
+            garages de la marque, et <strong>kilométrage certifié réel</strong> (certificat à l'appui).</p>
+          </div>
+
+          <div class="after-card">
+            <h3>🤝 Et après l'achat ?</h3>
+            <p>Je reste joignable : une fonctionnalité que vous ne trouvez pas, un réglage,
+            une question sur l'entretien… revenez vers moi, je vous aide. L'accompagnement
+            ne s'arrête pas à la remise des clés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RDV / ESSAI ============ -->
+  <section class="section section-alt" id="rdv">
+    <div class="container">
+      <div class="section-head">
+        <h2>Réserver un essai sur route</h2>
+        <p>Le plus simple et le plus rapide : <strong>appelez-moi directement</strong>.
+        Je diagnostique votre besoin en 5 minutes et on fixe un créneau.</p>
+      </div>
+      <div class="rdv-actions">
+        <a href="tel:+33123456789" class="btn btn-primary btn-lg">📞 01 23 45 67 89 — réponse rapide</a>
+        <a href="#contact" class="btn btn-outline btn-lg">Ou laissez-moi un message avec vos disponibilités</a>
+        <a href="#" id="bookingBtn" class="btn btn-lbc btn-lg" target="_blank" rel="noopener" hidden>📅 Réserver un créneau en ligne</a>
+      </div>
+      <p class="rdv-note">Disponible du lundi au samedi, 9h – 19h. Essais à Évry-Courcouronnes (91).</p>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="section" id="contact">
     <div class="container contact-grid">
       <div>
-        <h2>Contactez-nous</h2>
-        <p>Une question sur un véhicule ? Envie d'un essai ? Écrivez-nous, nous répondons rapidement.</p>
+        <h2>Contactez-moi</h2>
+        <p><strong>Je préfère le téléphone</strong> : contact immédiat, et en quelques questions
+        je cerne précisément votre besoin. Sinon, laissez un message avec vos disponibilités
+        pour un essai, je vous rappelle très vite.</p>
         <ul class="contact-list">
           <li>📍 Évry-Courcouronnes (91), Île-de-France</li>
           <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
@@ -129,6 +261,10 @@
           <label>Email<input type="email" name="email" required /></label>
         </div>
         <label>Véhicule concerné<input type="text" name="vehicule" placeholder="Optionnel" /></label>
+        <div class="form-row">
+          <label>Téléphone<input type="tel" name="telephone" placeholder="Pour vous rappeler" /></label>
+          <label>Disponibilités pour un essai<input type="text" name="dispo" placeholder="Ex : samedi matin" /></label>
+        </div>
         <label>Message<textarea name="message" rows="4" required></textarea></label>
         <button type="submit" class="btn btn-primary">Envoyer la demande</button>
         <p class="form-feedback" id="formFeedback" hidden></p>
