@@ -326,6 +326,7 @@ a { color: inherit; text-decoration: none; }
 .rdv-card .btn-outline { border-color: rgba(255,255,255,.35); color: #fff; }
 .rdv-card .btn-outline:hover { border-color: var(--primary); color: #ffb599; }
 .rdv-card .rdv-note { color: #a7b0c6; font-size: .85rem; margin: 0; text-align: left; }
+.call-free { text-align: center; color: #ffb599; font-size: .85rem; font-weight: 600; margin: -.4rem 0 0; }
 .rdv-note { text-align: center; color: var(--muted); margin-top: 1.2rem; font-size: .9rem; }
 
 /* ---------- Page conseils ---------- */
@@ -529,6 +530,7 @@ a { color: inherit; text-decoration: none; }
           <p>Le plus simple et le plus rapide : <strong>appelez-moi directement</strong>.
           Je diagnostique votre besoin en 5 minutes et on fixe un créneau.</p>
           <a href="tel:+33601106358" class="btn btn-primary btn-lg btn-block">📞 06 01 10 63 58</a>
+          <p class="call-free">Appel gratuit et sans engagement</p>
           <a href="#contact" class="btn btn-outline btn-block">Ou laissez-moi un message avec vos disponibilités</a>
           <a href="#" id="bookingBtn" class="btn btn-lbc btn-block" target="_blank" rel="noopener" hidden>📅 Réserver un créneau en ligne</a>
           <p class="rdv-note">Disponible du lundi au dimanche, de <strong>10h30 à 20h</strong>,
@@ -614,7 +616,7 @@ a { color: inherit; text-decoration: none; }
         je cerne précisément votre besoin. Vous pouvez aussi m'écrire directement par SMS.</p>
         <ul class="contact-list">
           <li>📍 Essonne (91), au Sud de Paris</li>
-          <li>📞 <a href="tel:+33601106358">06 01 10 63 58</a> (appel ou SMS)</li>
+          <li>📞 <a href="tel:+33601106358">06 01 10 63 58</a> (appel gratuit ou SMS)</li>
           <li>🚉 Si besoin, je peux venir vous chercher à la gare la plus proche</li>
           <li>🕒 Du lundi au dimanche : <strong>10h30 à 20h</strong><br />
               <small>(prévenir au minimum la veille pour un rendez-vous)</small></li>
@@ -709,10 +711,10 @@ const CARS = [
     annonce: "", site: "Leboncoin", vendu: false
   },
   {
-    id: 2, marque: "Renault", modele: "Captur 2", annee: 2020,
-    prix: 14990, km: 60000, carburant: "Essence", boite: "Manuelle",
-    puissance: "100 ch", places: 5, couleur: "#e67e22",
-    desc: "SUV urbain spacieux et confortable, position de conduite surélevée. Entretenu, prêt à rouler, en parfait état.",
+    id: 2, marque: "Renault", modele: "Captur 2 Intens", annee: 2019,
+    prix: 18490, km: 18000, carburant: "Diesel", boite: "Automatique",
+    puissance: "115 ch", places: 5, couleur: "#e67e22",
+    desc: "SUV crossover 1.5 Blue dCi 115 Intens EDC (boîte automatique), 6 CV fiscaux, 1re mise en circulation 12/2019. Seulement 18 000 km ! Très bon état intérieur/extérieur, non-fumeur. Très équipé : caméra avant + arrière, park assist, GPS tactile, Apple CarPlay / Android Auto, cockpit numérique, sièges cuir, climatisation bi-zone, carte main libre, phares LED, jantes alu 18 pouces, régulateur… Prix négociable dans la limite du raisonnable.",
     annonce: "", site: "Leboncoin", vendu: false
   },
   {

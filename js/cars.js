@@ -30,10 +30,10 @@ const CARS = [
     annonce: "", site: "Leboncoin", vendu: false
   },
   {
-    id: 2, marque: "Renault", modele: "Captur 2", annee: 2020,
-    prix: 14990, km: 60000, carburant: "Essence", boite: "Manuelle",
-    puissance: "100 ch", places: 5, couleur: "#e67e22",
-    desc: "SUV urbain spacieux et confortable, position de conduite surélevée. Entretenu, prêt à rouler, en parfait état.",
+    id: 2, marque: "Renault", modele: "Captur 2 Intens", annee: 2019,
+    prix: 18490, km: 18000, carburant: "Diesel", boite: "Automatique",
+    puissance: "115 ch", places: 5, couleur: "#e67e22",
+    desc: "SUV crossover 1.5 Blue dCi 115 Intens EDC (boîte automatique), 6 CV fiscaux, 1re mise en circulation 12/2019. Seulement 18 000 km ! Très bon état intérieur/extérieur, non-fumeur. Très équipé : caméra avant + arrière, park assist, GPS tactile, Apple CarPlay / Android Auto, cockpit numérique, sièges cuir, climatisation bi-zone, carte main libre, phares LED, jantes alu 18 pouces, régulateur… Prix négociable dans la limite du raisonnable.",
     annonce: "", site: "Leboncoin", vendu: false
   },
   {
