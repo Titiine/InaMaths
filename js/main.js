@@ -5,12 +5,6 @@
   const grid = document.getElementById("carGrid");
   const resultCount = document.getElementById("resultCount");
   const noResult = document.getElementById("noResult");
-  const fMarque = document.getElementById("fMarque");
-  const fCarburant = document.getElementById("fCarburant");
-  const fPrix = document.getElementById("fPrix");
-  const fSearch = document.getElementById("fSearch");
-  const fVendus = document.getElementById("fVendus");
-  const btnReset = document.getElementById("btnReset");
 
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
   const km = (n) => n.toLocaleString("fr-FR") + " km";
@@ -73,31 +67,6 @@
       </article>`;
   }
 
-  /* --- Remplir les listes déroulantes à partir des données --- */
-  function populateFilters() {
-    const marques = [...new Set(CARS.map((c) => c.marque))].sort();
-    const carbs = [...new Set(CARS.map((c) => c.carburant))].sort();
-    marques.forEach((m) => fMarque.add(new Option(m, m)));
-    carbs.forEach((c) => fCarburant.add(new Option(c, c)));
-  }
-
-  /* --- Filtrage --- */
-  function applyFilters() {
-    const q = fSearch.value.trim().toLowerCase();
-    const list = CARS.filter((c) => {
-      if (c.vendu && !fVendus.checked) return false;
-      if (fMarque.value && c.marque !== fMarque.value) return false;
-      if (fCarburant.value && c.carburant !== fCarburant.value) return false;
-      if (fPrix.value && c.prix > Number(fPrix.value)) return false;
-      if (q) {
-        const hay = `${c.marque} ${c.modele} ${c.carburant} ${c.boite}`.toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    });
-    render(list);
-  }
-
   function render(list) {
     grid.innerHTML = list.map(carCard).join("");
     noResult.hidden = list.length !== 0;
@@ -145,14 +114,6 @@
   }
 
   /* --- Événements --- */
-  [fMarque, fCarburant, fPrix, fVendus].forEach((el) => el.addEventListener("change", applyFilters));
-  fSearch.addEventListener("input", applyFilters);
-  btnReset.addEventListener("click", () => {
-    fMarque.value = ""; fCarburant.value = ""; fPrix.value = ""; fSearch.value = "";
-    fVendus.checked = false;
-    applyFilters();
-  });
-
   grid.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-detail]");
     if (!btn) return;
@@ -201,10 +162,8 @@
   });
 
   /* --- Init --- */
-  ["lbcProfileLink", "lbcContactBtn"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el && typeof LEBONCOIN_PROFILE === "string") el.href = LEBONCOIN_PROFILE;
-  });
+  const lbcProfile = document.getElementById("lbcProfileLink");
+  if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
 
   // Bouton de réservation en ligne (Calendly ou autre) : ne s'affiche que si BOOKING_URL est renseigné.
   const bookingBtn = document.getElementById("bookingBtn");
@@ -214,6 +173,6 @@
   }
 
   document.getElementById("year").textContent = new Date().getFullYear();
-  populateFilters();
-  applyFilters();
+  // Les véhicules vendus restent dans les données mais ne sont pas affichés.
+  render(CARS.filter((c) => !c.vendu));
 })();

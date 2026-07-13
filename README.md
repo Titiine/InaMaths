@@ -1,6 +1,6 @@
 # AbiAuto 🚗
 
-Site vitrine d'un **conseiller automobile** expérimenté basé à **Évry (Île-de-France)**.
+Site vitrine d'un **conseiller automobile** expérimenté basé en **Essonne (Sud de Paris)**.
 En partenariat avec des professionnels (garage mécanique, carrosserie).
 Site statique HTML/CSS/JS, sans dépendance externe.
 

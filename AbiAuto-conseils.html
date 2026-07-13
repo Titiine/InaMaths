@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conseils auto | AbiAuto, conseiller automobile à Évry</title>
-  <meta name="description" content="PureTech, GPL, diesel, hybride… Comprenez enfin les motorisations, leur fiabilité et laquelle choisir selon votre usage. Les conseils d'AbiAuto, conseiller automobile à Évry." />
+  <title>Conseils auto | AbiAuto, conseiller automobile en Essonne</title>
+  <meta name="description" content="PureTech, GPL, diesel, hybride… Comprenez enfin les motorisations, leur fiabilité et laquelle choisir selon votre usage. Les conseils d'AbiAuto, conseiller automobile en Essonne." />
   <meta property="og:title" content="Conseils auto | AbiAuto" />
   <meta property="og:description" content="PureTech, GPL, diesel, hybride : comprenez les motorisations et leur fiabilité avant d'acheter." />
   <meta property="og:type" content="article" />
@@ -262,7 +262,7 @@ a { color: inherit; text-decoration: none; }
   content: ""; position: absolute; left: 21px; top: 10px; bottom: 10px;
   width: 3px; background: linear-gradient(var(--primary), #ffd0bd); border-radius: 2px;
 }
-.timeline li { display: flex; gap: 1.1rem; padding: 0 0 1.8rem; position: relative; }
+.timeline > li { display: flex; gap: 1.1rem; padding: 0 0 1.8rem; position: relative; }
 .tl-num {
   flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%;
   background: var(--primary); color: #fff; font-weight: 800; font-size: 1.15rem;
@@ -272,8 +272,9 @@ a { color: inherit; text-decoration: none; }
 .tl-body h3 { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .tl-time { background: #eef4ff; color: var(--accent); font-size: .75rem; font-weight: 700; padding: .15rem .6rem; border-radius: 999px; white-space: nowrap; }
 .tl-body p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
-.tl-list { list-style: none; margin-top: .5rem; display: flex; flex-direction: column; gap: .3rem; }
-.tl-list li { color: var(--text); font-size: .92rem; font-weight: 600; }
+.tl-list { list-style: disc outside; margin: .6rem 0 0 1.5rem; padding: 0; }
+.tl-list li { color: var(--text); font-size: .95rem; font-weight: 600; margin-bottom: .35rem; padding-left: .2rem; }
+.tl-list li::marker { color: var(--primary); }
 
 /* Étiquettes d'étapes (formule express) */
 .step-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin-top: .9rem; }
@@ -308,9 +309,20 @@ a { color: inherit; text-decoration: none; }
 .origin-card h3 { color: #1e40af; }
 .after-card { background: var(--surface-alt); }
 
-/* ---------- RDV ---------- */
-.rdv-actions { display: flex; flex-direction: column; gap: .9rem; align-items: center; }
+/* ---------- Encadré réservation (colonne gauche du processus) ---------- */
+.process-left { display: flex; flex-direction: column; }
 .btn-lg { padding: 1rem 2rem; font-size: 1.05rem; }
+.rdv-card {
+  margin-top: .5rem; border-radius: var(--radius); padding: 1.6rem 1.7rem;
+  background: linear-gradient(135deg, #0b1020 0%, #16224a 100%); color: #fff;
+  display: flex; flex-direction: column; gap: .9rem;
+  box-shadow: var(--shadow);
+}
+.rdv-card h3 { font-size: 1.25rem; font-weight: 800; }
+.rdv-card > p { color: #c7cede; font-size: .95rem; }
+.rdv-card .btn-outline { border-color: rgba(255,255,255,.35); color: #fff; }
+.rdv-card .btn-outline:hover { border-color: var(--primary); color: #ffb599; }
+.rdv-card .rdv-note { color: #a7b0c6; font-size: .85rem; margin: 0; text-align: left; }
 .rdv-note { text-align: center; color: var(--muted); margin-top: 1.2rem; font-size: .9rem; }
 
 /* ---------- Page conseils ---------- */
@@ -475,7 +487,7 @@ a { color: inherit; text-decoration: none; }
           <summary>Que comprend la préparation du véhicule ?</summary>
           <p>Freins/disques, courroie de distribution si nécessaire, contrôle technique, nettoyage
           complet : <strong>inclus d'office, 0 € de supplément</strong>, là où une concession facture
-          en général 500 à 800 €. Double de clés offert s'il n'était pas fourni.</p>
+          en général 500 à 800 €.</p>
         </details>
         <details>
           <summary>Puis-je vraiment repartir avec la voiture le jour même ?</summary>
@@ -486,7 +498,7 @@ a { color: inherit; text-decoration: none; }
         </details>
       </div>
       <div class="advice-cta">
-        <p>Un doute sur un modèle précis ? Le plus simple reste d'en parler :</p>
+        <p>Une question ou besoin d'un conseil sur un de mes véhicules ? Le plus simple reste d'en parler :</p>
         <a href="tel:+33123456789" class="btn btn-primary btn-lg">📞 Appelez-moi (conseil gratuit)</a>
       </div>
     </div>
@@ -497,7 +509,7 @@ a { color: inherit; text-decoration: none; }
     <div class="container footer-inner">
       <div>
         <a href="AbiAuto-site-complet.html" class="logo logo-light"><span class="logo-mark">🚗</span><span class="logo-text">Abi<strong>Auto</strong></span></a>
-        <p>Votre conseiller automobile à Évry.</p>
+        <p>Votre conseiller automobile en Essonne.</p>
       </div>
       <div class="footer-links">
         <a href="AbiAuto-site-complet.html#catalogue">Catalogue</a>
