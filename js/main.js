@@ -15,8 +15,13 @@
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
   const km = (n) => n.toLocaleString("fr-FR") + " km";
 
-  /* --- Vignette véhicule : SVG dégradé + silhouette (aucune image externe) --- */
+  /* --- Vignette véhicule ---
+     Si la voiture a des photos (car.photos = ["url1", "url2", ...]), on affiche
+     la première photo. Sinon, on retombe sur une illustration SVG (hors-ligne). */
   function carThumb(car) {
+    if (Array.isArray(car.photos) && car.photos.length) {
+      return `<img class="car-thumb" src="${car.photos[0]}" alt="${car.marque} ${car.modele}" loading="lazy" />`;
+    }
     return `
       <svg class="car-thumb" viewBox="0 0 400 240" role="img" aria-label="${car.marque} ${car.modele}">
         <defs>
@@ -33,6 +38,19 @@
         </g>
         <text x="20" y="34" fill="rgba(255,255,255,.85)" font-family="system-ui" font-size="18" font-weight="700">${car.marque}</text>
       </svg>`;
+  }
+
+  /* --- Galerie photos pour la fiche (modale) --- */
+  function carGallery(car) {
+    if (!(Array.isArray(car.photos) && car.photos.length)) {
+      return `<div class="modal-media">${carThumb(car)}</div>`;
+    }
+    const main = `<img id="galleryMain" class="gallery-main" src="${car.photos[0]}" alt="${car.marque} ${car.modele}" />`;
+    const thumbs = car.photos.length > 1
+      ? `<div class="gallery-thumbs">${car.photos.map((src, i) =>
+          `<img src="${src}" alt="Photo ${i + 1}" class="${i === 0 ? "active" : ""}" data-gallery="${src}" />`).join("")}</div>`
+      : "";
+    return `<div class="modal-media gallery">${main}${thumbs}</div>`;
   }
 
   function badge(txt) { return `<span class="tag">${txt}</span>`; }
@@ -102,7 +120,7 @@
          <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
       : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `
-      <div class="modal-media">${carThumb(car)}</div>
+      ${carGallery(car)}
       <div class="modal-info">
         <h2>${car.marque} ${car.modele} ${car.vendu ? '<span class="tag tag-sold">Vendu</span>' : ""}</h2>
         <p class="modal-price">${euro(car.prix)}</p>
@@ -143,6 +161,14 @@
   });
 
   modal.addEventListener("click", (e) => {
+    const thumb = e.target.closest("[data-gallery]");
+    if (thumb) {
+      const main = document.getElementById("galleryMain");
+      if (main) main.src = thumb.dataset.gallery;
+      modal.querySelectorAll(".gallery-thumbs img").forEach((t) => t.classList.remove("active"));
+      thumb.classList.add("active");
+      return;
+    }
     if (e.target.hasAttribute("data-close") || e.target.classList.contains("modal-backdrop")) {
       closeModal();
     }

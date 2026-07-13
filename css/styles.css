@@ -136,6 +136,7 @@ a { color: inherit; text-decoration: none; }
   font-size: .78rem; padding: .2rem .6rem; border-radius: 999px; font-weight: 600; }
 .car-body .btn { margin-top: auto; }
 .no-result { text-align: center; color: var(--muted); font-size: 1.1rem; padding: 2rem 0; }
+.secure-line { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; border-radius: 10px; padding: .6rem 1rem; font-size: .9rem; display: inline-block; margin: .3rem 0 1rem; }
 
 /* ---------- Pourquoi nous ---------- */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
@@ -204,6 +205,15 @@ a { color: inherit; text-decoration: none; }
   border: none; background: rgba(255,255,255,.9); font-size: 1rem; cursor: pointer; box-shadow: var(--shadow);
 }
 .modal-media .car-thumb { border-radius: 18px 18px 0 0; aspect-ratio: 720/300; }
+.modal-media img.car-thumb { width: 100%; object-fit: cover; }
+.gallery-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 18px 18px 0 0; background: var(--surface-alt); }
+.gallery-thumbs { display: flex; gap: .5rem; padding: .7rem .9rem 0; flex-wrap: wrap; }
+.gallery-thumbs img {
+  width: 72px; height: 54px; object-fit: cover; border-radius: 8px; cursor: pointer;
+  border: 2px solid transparent; opacity: .7; transition: .15s;
+}
+.gallery-thumbs img:hover { opacity: 1; }
+.gallery-thumbs img.active { border-color: var(--primary); opacity: 1; }
 .modal-info { padding: 1.6rem 1.8rem 2rem; }
 .modal-info h2 { font-size: 1.6rem; font-weight: 800; }
 .modal-price { color: var(--primary); font-size: 1.5rem; font-weight: 800; margin: .3rem 0 1rem; }
@@ -272,6 +282,10 @@ a { color: inherit; text-decoration: none; }
 .process-side h3 { font-size: 1.05rem; margin-bottom: .5rem; }
 .process-side p, .process-side li { font-size: .93rem; color: var(--muted); }
 .process-side ul { list-style: none; margin-top: .6rem; display: flex; flex-direction: column; gap: .45rem; }
+.serenite-card { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe !important; }
+.serenite-card h3 { color: #1e40af; }
+.serenite-card p, .serenite-card li { color: #334155; }
+.serenite-note { margin-top: .8rem; font-weight: 700; color: #1e40af !important; }
 .express-card { background: linear-gradient(135deg, #fff7ed, #ffedd5); border-color: #fed7aa !important; }
 .express-card h3 { color: #9a3412; }
 .express-note { margin-top: .8rem; font-weight: 700; color: #9a3412 !important; }
@@ -295,6 +309,8 @@ a { color: inherit; text-decoration: none; }
 .advice-card p { color: var(--muted); font-size: .93rem; margin-top: .5rem; }
 .advice-card p strong { color: var(--text); }
 
+.fuel-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-bottom: 1.4rem; }
+.fuel-legend span { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: .35rem .9rem; font-size: .9rem; font-weight: 600; }
 .table-wrap { overflow-x: auto; }
 .usage-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .usage-table th, .usage-table td { padding: .95rem 1.1rem; text-align: left; border-bottom: 1px solid var(--border); }

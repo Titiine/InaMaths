@@ -148,6 +148,7 @@ a { color: inherit; text-decoration: none; }
   font-size: .78rem; padding: .2rem .6rem; border-radius: 999px; font-weight: 600; }
 .car-body .btn { margin-top: auto; }
 .no-result { text-align: center; color: var(--muted); font-size: 1.1rem; padding: 2rem 0; }
+.secure-line { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; border-radius: 10px; padding: .6rem 1rem; font-size: .9rem; display: inline-block; margin: .3rem 0 1rem; }
 
 /* ---------- Pourquoi nous ---------- */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
@@ -216,6 +217,15 @@ a { color: inherit; text-decoration: none; }
   border: none; background: rgba(255,255,255,.9); font-size: 1rem; cursor: pointer; box-shadow: var(--shadow);
 }
 .modal-media .car-thumb { border-radius: 18px 18px 0 0; aspect-ratio: 720/300; }
+.modal-media img.car-thumb { width: 100%; object-fit: cover; }
+.gallery-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 18px 18px 0 0; background: var(--surface-alt); }
+.gallery-thumbs { display: flex; gap: .5rem; padding: .7rem .9rem 0; flex-wrap: wrap; }
+.gallery-thumbs img {
+  width: 72px; height: 54px; object-fit: cover; border-radius: 8px; cursor: pointer;
+  border: 2px solid transparent; opacity: .7; transition: .15s;
+}
+.gallery-thumbs img:hover { opacity: 1; }
+.gallery-thumbs img.active { border-color: var(--primary); opacity: 1; }
 .modal-info { padding: 1.6rem 1.8rem 2rem; }
 .modal-info h2 { font-size: 1.6rem; font-weight: 800; }
 .modal-price { color: var(--primary); font-size: 1.5rem; font-weight: 800; margin: .3rem 0 1rem; }
@@ -284,6 +294,10 @@ a { color: inherit; text-decoration: none; }
 .process-side h3 { font-size: 1.05rem; margin-bottom: .5rem; }
 .process-side p, .process-side li { font-size: .93rem; color: var(--muted); }
 .process-side ul { list-style: none; margin-top: .6rem; display: flex; flex-direction: column; gap: .45rem; }
+.serenite-card { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe !important; }
+.serenite-card h3 { color: #1e40af; }
+.serenite-card p, .serenite-card li { color: #334155; }
+.serenite-note { margin-top: .8rem; font-weight: 700; color: #1e40af !important; }
 .express-card { background: linear-gradient(135deg, #fff7ed, #ffedd5); border-color: #fed7aa !important; }
 .express-card h3 { color: #9a3412; }
 .express-note { margin-top: .8rem; font-weight: 700; color: #9a3412 !important; }
@@ -307,6 +321,8 @@ a { color: inherit; text-decoration: none; }
 .advice-card p { color: var(--muted); font-size: .93rem; margin-top: .5rem; }
 .advice-card p strong { color: var(--text); }
 
+.fuel-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-bottom: 1.4rem; }
+.fuel-legend span { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: .35rem .9rem; font-size: .9rem; font-weight: 600; }
 .table-wrap { overflow-x: auto; }
 .usage-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .usage-table th, .usage-table td { padding: .95rem 1.1rem; text-align: left; border-bottom: 1px solid var(--border); }
@@ -431,6 +447,7 @@ a { color: inherit; text-decoration: none; }
       <div class="section-head">
         <h2>Notre catalogue</h2>
         <p id="resultCount">Chargement des véhicules…</p>
+        <p class="secure-line">🔒 Achat sécurisé disponible via le <strong>Pack Sérénité Leboncoin</strong> (paiement sécurisé + garantie panne mécanique en option).</p>
         <a href="#" id="lbcProfileLink" class="btn btn-lbc" target="_blank" rel="noopener">Voir toutes mes annonces sur Leboncoin ↗</a>
       </div>
       <div class="car-grid" id="carGrid"><!-- injecté en JS --></div>
@@ -524,6 +541,21 @@ a { color: inherit; text-decoration: none; }
 
         <!-- Colonne réassurance -->
         <div class="process-side">
+          <div class="serenite-card">
+            <h3>🛡️ Achat 100 % sécurisé — Pack Sérénité Leboncoin</h3>
+            <p>Mes annonces sont éligibles au <strong>Pack Sérénité</strong> de Leboncoin :
+            vous pouvez acheter en toute tranquillité, avec le badge « achat sécurisé ».</p>
+            <ul>
+              <li>🔒 <strong>Paiement sécurisé</strong> : Leboncoin bloque les fonds et ne me les
+                  reverse qu'une fois la vente finalisée. Zéro risque d'arnaque.</li>
+              <li>🔧 <strong>Garantie panne mécanique</strong> en option (3, 6 ou 12 mois) :
+                  pannes mécaniques, électriques et électroniques couvertes, avec dépannage et
+                  véhicule de remplacement.</li>
+              <li>✅ Éligible dès lors que le véhicule a entre 2 et 10 ans et moins de 200 000 km.</li>
+            </ul>
+            <p class="serenite-note">Un cadre officiel et rassurant, en plus de mon accompagnement personnel.</p>
+          </div>
+
           <div class="express-card">
             <h3>⚡ Formule express : achetez et roulez le jour même</h3>
             <p>Si vous êtes disponible, tout peut se faire en une journée. Il ne faut que 3 choses :</p>
@@ -682,7 +714,11 @@ const BOOKING_URL = "";
 //   - site    : "Leboncoin" ou "La Centrale"
 //   - vendu   : true quand le véhicule est vendu / annonce expirée
 //               (il sera masqué par défaut dans le catalogue)
-// Les images utilisent des dégradés SVG intégrés pour rester 100% hors-ligne.
+//   - photos  : liste des photos du véhicule, ex :
+//                 photos: ["assets/clio-1.jpg", "assets/clio-2.jpg"]
+//               La 1re photo sert de vignette, les autres forment la galerie.
+//               Si aucune photo n'est indiquée, une illustration est affichée.
+// (Déposez vos photos dans le dossier "assets/" puis référencez-les ci-dessous.)
 const CARS = [
   {
     id: 1, marque: "Renault", modele: "Clio V", annee: 2022,
@@ -787,8 +823,13 @@ const CARS = [
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
   const km = (n) => n.toLocaleString("fr-FR") + " km";
 
-  /* --- Vignette véhicule : SVG dégradé + silhouette (aucune image externe) --- */
+  /* --- Vignette véhicule ---
+     Si la voiture a des photos (car.photos = ["url1", "url2", ...]), on affiche
+     la première photo. Sinon, on retombe sur une illustration SVG (hors-ligne). */
   function carThumb(car) {
+    if (Array.isArray(car.photos) && car.photos.length) {
+      return `<img class="car-thumb" src="${car.photos[0]}" alt="${car.marque} ${car.modele}" loading="lazy" />`;
+    }
     return `
       <svg class="car-thumb" viewBox="0 0 400 240" role="img" aria-label="${car.marque} ${car.modele}">
         <defs>
@@ -805,6 +846,19 @@ const CARS = [
         </g>
         <text x="20" y="34" fill="rgba(255,255,255,.85)" font-family="system-ui" font-size="18" font-weight="700">${car.marque}</text>
       </svg>`;
+  }
+
+  /* --- Galerie photos pour la fiche (modale) --- */
+  function carGallery(car) {
+    if (!(Array.isArray(car.photos) && car.photos.length)) {
+      return `<div class="modal-media">${carThumb(car)}</div>`;
+    }
+    const main = `<img id="galleryMain" class="gallery-main" src="${car.photos[0]}" alt="${car.marque} ${car.modele}" />`;
+    const thumbs = car.photos.length > 1
+      ? `<div class="gallery-thumbs">${car.photos.map((src, i) =>
+          `<img src="${src}" alt="Photo ${i + 1}" class="${i === 0 ? "active" : ""}" data-gallery="${src}" />`).join("")}</div>`
+      : "";
+    return `<div class="modal-media gallery">${main}${thumbs}</div>`;
   }
 
   function badge(txt) { return `<span class="tag">${txt}</span>`; }
@@ -874,7 +928,7 @@ const CARS = [
          <a href="tel:+33123456789" class="btn btn-primary btn-block">Me contacter</a>`
       : `<a href="#rdv" class="btn btn-primary btn-block" data-close>Réserver un essai sur route</a>${annonceBtn}`;
     modalContent.innerHTML = `
-      <div class="modal-media">${carThumb(car)}</div>
+      ${carGallery(car)}
       <div class="modal-info">
         <h2>${car.marque} ${car.modele} ${car.vendu ? '<span class="tag tag-sold">Vendu</span>' : ""}</h2>
         <p class="modal-price">${euro(car.prix)}</p>
@@ -915,6 +969,14 @@ const CARS = [
   });
 
   modal.addEventListener("click", (e) => {
+    const thumb = e.target.closest("[data-gallery]");
+    if (thumb) {
+      const main = document.getElementById("galleryMain");
+      if (main) main.src = thumb.dataset.gallery;
+      modal.querySelectorAll(".gallery-thumbs img").forEach((t) => t.classList.remove("active"));
+      thumb.classList.add("active");
+      return;
+    }
     if (e.target.hasAttribute("data-close") || e.target.classList.contains("modal-backdrop")) {
       closeModal();
     }

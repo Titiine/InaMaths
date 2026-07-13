@@ -13,7 +13,11 @@ const BOOKING_URL = "";
 //   - site    : "Leboncoin" ou "La Centrale"
 //   - vendu   : true quand le véhicule est vendu / annonce expirée
 //               (il sera masqué par défaut dans le catalogue)
-// Les images utilisent des dégradés SVG intégrés pour rester 100% hors-ligne.
+//   - photos  : liste des photos du véhicule, ex :
+//                 photos: ["assets/clio-1.jpg", "assets/clio-2.jpg"]
+//               La 1re photo sert de vignette, les autres forment la galerie.
+//               Si aucune photo n'est indiquée, une illustration est affichée.
+// (Déposez vos photos dans le dossier "assets/" puis référencez-les ci-dessous.)
 const CARS = [
   {
     id: 1, marque: "Renault", modele: "Clio V", annee: 2022,
