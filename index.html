@@ -253,7 +253,14 @@
               <small>(prévenir au minimum la veille pour un rendez-vous)</small></li>
         </ul>
       </div>
-      <form class="contact-form" id="contactForm" novalidate>
+      <form class="contact-form" id="contactForm" method="POST"
+            action="https://formsubmit.co/benhaek2@gmail.com" novalidate>
+        <!-- Configuration FormSubmit (les demandes arrivent par email) -->
+        <input type="hidden" name="_subject" value="Nouvelle demande depuis le site AbiAuto" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="true" />
+        <!-- Piège anti-robots (doit rester vide) -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <fieldset class="objet-group">
           <legend>Quel est l'objet de votre demande ? <span class="req">*</span></legend>
           <div class="objet-options">

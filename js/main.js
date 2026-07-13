@@ -144,21 +144,20 @@
     if (e.target.tagName === "A") mainNav.classList.remove("open");
   });
 
-  /* --- Formulaire de contact / RDV (démo, pas d'envoi réel) --- */
+  /* --- Formulaire de contact / RDV ---
+     Les demandes sont envoyées par email via FormSubmit (voir l'attribut
+     action du <form>). On valide d'abord côté client ; si tout est bon,
+     l'envoi se fait normalement vers FormSubmit. */
   const form = document.getElementById("contactForm");
   const feedback = document.getElementById("formFeedback");
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
     if (!form.checkValidity()) {
+      e.preventDefault();
       feedback.hidden = false;
       feedback.className = "form-feedback error";
-      feedback.textContent = "Merci de remplir les champs obligatoires.";
-      return;
+      feedback.textContent = "Merci de remplir les champs obligatoires (objet, nom et téléphone).";
     }
-    feedback.hidden = false;
-    feedback.className = "form-feedback success";
-    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, je vous rappelle très vite.";
-    form.reset();
+    // Sinon : l'envoi vers FormSubmit se poursuit normalement.
   });
 
   /* --- Init --- */
