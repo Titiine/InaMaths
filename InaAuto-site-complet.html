@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InaAuto — Vente de voitures neuves et d'occasion</title>
+  <meta name="description" content="InaAuto, votre concessionnaire de confiance. Découvrez notre sélection de voitures neuves et d'occasion au meilleur prix." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+/* ================= InaAuto — styles ================= */
+:root {
+  --bg: #0b1020;
+  --surface: #ffffff;
+  --surface-alt: #f4f6fb;
+  --text: #1a2036;
+  --muted: #5b6478;
+  --primary: #ff5a1f;
+  --primary-dark: #e0490f;
+  --accent: #2563eb;
+  --border: #e3e7f0;
+  --shadow: 0 10px 30px rgba(16, 24, 48, .08);
+  --radius: 14px;
+  --container: 1160px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--surface);
+  line-height: 1.6;
+}
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .8rem 1.4rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  border: 2px solid transparent; cursor: pointer; transition: .18s ease; white-space: nowrap;
+}
+.btn-sm { padding: .5rem 1rem; font-size: .85rem; }
+.btn-block { width: 100%; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.3); }
+.btn-ghost:hover { background: rgba(255,255,255,.22); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { display: flex; align-items: center; gap: .5rem; font-size: 1.35rem; font-weight: 800; letter-spacing: -.5px; }
+.logo-mark { font-size: 1.5rem; }
+.logo-text strong { color: var(--primary); }
+.main-nav { display: flex; align-items: center; gap: 1.5rem; }
+.main-nav a { font-weight: 500; color: var(--muted); transition: color .15s; }
+.main-nav a:hover { color: var(--text); }
+.main-nav .btn { color: var(--text); }
+.nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255,90,31,.35), transparent 60%),
+    linear-gradient(135deg, #0b1020 0%, #16224a 100%);
+  color: #fff; padding: 5rem 0 4rem;
+}
+.hero-eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: .78rem; color: #ffb599; font-weight: 700; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; font-weight: 800; letter-spacing: -1px; }
+.hero h1 .accent { color: var(--primary); }
+.hero-lead { margin: 1.2rem 0 2rem; font-size: 1.12rem; color: #c7cede; max-width: 560px; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+.hero-stats strong { display: block; font-size: 1.7rem; font-weight: 800; }
+.hero-stats span { color: #a7b0c6; font-size: .9rem; }
+
+/* ---------- Barre de recherche ---------- */
+.searchbar-wrap { margin-top: -2.2rem; position: relative; z-index: 20; }
+.searchbar {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 1.1rem; display: grid; gap: 1rem; align-items: end;
+  grid-template-columns: repeat(4, 1fr) auto;
+}
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field label { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.field select, .field input {
+  padding: .7rem .8rem; border: 1px solid var(--border); border-radius: 10px; font-size: .95rem;
+  background: var(--surface-alt); color: var(--text);
+}
+.field select:focus, .field input:focus { outline: 2px solid var(--primary); background: #fff; }
+
+/* ---------- Sections ---------- */
+.section { padding: 4.5rem 0; }
+.section-alt { background: var(--surface-alt); }
+.section-head { text-align: center; max-width: 620px; margin: 0 auto 2.8rem; }
+.section-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -.5px; }
+.section-head p { color: var(--muted); margin-top: .5rem; }
+
+/* ---------- Grille voitures ---------- */
+.car-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.6rem; }
+.car-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow); transition: transform .18s, box-shadow .18s;
+  display: flex; flex-direction: column;
+}
+.car-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(16,24,48,.14); }
+.car-media { position: relative; }
+.car-thumb { width: 100%; height: auto; aspect-ratio: 400/240; }
+.car-price {
+  position: absolute; bottom: 10px; right: 10px; background: var(--primary); color: #fff;
+  font-weight: 800; padding: .35rem .8rem; border-radius: 999px; font-size: .95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+.car-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+.car-body h3 { font-size: 1.15rem; font-weight: 700; }
+.car-sub { color: var(--muted); font-size: .9rem; margin-top: -.4rem; }
+.car-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .2rem 0 .6rem; }
+.tag { background: var(--surface-alt); border: 1px solid var(--border); color: var(--muted);
+  font-size: .78rem; padding: .2rem .6rem; border-radius: 999px; font-weight: 600; }
+.car-body .btn { margin-top: auto; }
+.no-result { text-align: center; color: var(--muted); font-size: 1.1rem; padding: 2rem 0; }
+
+/* ---------- Pourquoi nous ---------- */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
+.feature { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; text-align: center; }
+.feature-ico { font-size: 2rem; }
+.feature h3 { margin: .7rem 0 .4rem; font-size: 1.1rem; }
+.feature p { color: var(--muted); font-size: .93rem; }
+
+/* ---------- Contact ---------- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.contact-grid h2 { font-size: 2rem; font-weight: 800; margin-bottom: .6rem; }
+.contact-list { list-style: none; margin-top: 1.4rem; display: flex; flex-direction: column; gap: .7rem; color: var(--muted); }
+.contact-list a { color: var(--accent); }
+.contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 1rem; }
+.contact-form label { display: flex; flex-direction: column; gap: .35rem; font-weight: 600; font-size: .9rem; }
+.contact-form input, .contact-form textarea {
+  padding: .7rem .8rem; border: 1px solid var(--border); border-radius: 10px; font-size: .95rem;
+  font-family: inherit; background: var(--surface-alt);
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--primary); background: #fff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-feedback { padding: .7rem 1rem; border-radius: 10px; font-size: .9rem; font-weight: 600; }
+.form-feedback.success { background: #e7f8ee; color: #1a7f42; }
+.form-feedback.error { background: #fdecec; color: #c0392b; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--bg); color: #c7cede; padding: 3rem 0 2rem; margin-top: 2rem; }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center; }
+.logo-light { color: #fff; }
+.site-footer p { font-size: .9rem; margin-top: .5rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.4rem; margin-top: 1rem; font-size: .82rem; color: #8892aa; }
+
+/* ---------- Modale ---------- */
+.modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(8, 12, 28, .6); backdrop-filter: blur(3px); }
+.modal-box {
+  position: relative; background: var(--surface); border-radius: 18px; max-width: 720px; width: 100%;
+  max-height: 90vh; overflow: auto; box-shadow: 0 30px 80px rgba(0,0,0,.4);
+}
+.modal-close {
+  position: absolute; top: 12px; right: 12px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,.9); font-size: 1rem; cursor: pointer; box-shadow: var(--shadow);
+}
+.modal-media .car-thumb { border-radius: 18px 18px 0 0; aspect-ratio: 720/300; }
+.modal-info { padding: 1.6rem 1.8rem 2rem; }
+.modal-info h2 { font-size: 1.6rem; font-weight: 800; }
+.modal-price { color: var(--primary); font-size: 1.5rem; font-weight: 800; margin: .3rem 0 1rem; }
+.modal-desc { color: var(--muted); }
+.specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.4rem 0; }
+.specs > div { background: var(--surface-alt); border-radius: 10px; padding: .8rem; }
+.specs dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); font-weight: 700; }
+.specs dd { font-size: 1.05rem; font-weight: 700; margin-top: .2rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .searchbar { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .nav-toggle { display: block; }
+  .main-nav {
+    position: absolute; top: 68px; left: 0; right: 0; background: #fff; flex-direction: column;
+    align-items: stretch; gap: 0; padding: .5rem 1rem 1rem; border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow); display: none;
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: .8rem 0; border-bottom: 1px solid var(--border); }
+  .main-nav .btn { margin-top: .6rem; }
+  .hero-stats { gap: 1.6rem; }
+  .searchbar { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .specs { grid-template-columns: repeat(2, 1fr); }
+}
+
+</style>
+</head>
+<body>
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="logo">
+        <span class="logo-mark">🚗</span>
+        <span class="logo-text">Ina<strong>Auto</strong></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#catalogue">Catalogue</a>
+        <a href="#pourquoi">Pourquoi nous</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:+33123456789" class="btn btn-outline btn-sm">📞 01 23 45 67 89</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Concessionnaire multimarques</p>
+        <h1>Trouvez la voiture <span class="accent">de vos rêves</span></h1>
+        <p class="hero-lead">
+          Un large choix de véhicules neufs et d'occasion, contrôlés et garantis.
+          Financement sur mesure et reprise de votre ancien véhicule.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalogue" class="btn btn-primary">Voir le catalogue</a>
+          <a href="#contact" class="btn btn-ghost">Prendre rendez-vous</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>350+</strong><span>véhicules en stock</span></div>
+          <div><strong>15 ans</strong><span>d'expérience</span></div>
+          <div><strong>4,8/5</strong><span>avis clients</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK SEARCH BAR ============ -->
+  <section class="searchbar-wrap">
+    <div class="container">
+      <div class="searchbar">
+        <div class="field">
+          <label for="fMarque">Marque</label>
+          <select id="fMarque"><option value="">Toutes</option></select>
+        </div>
+        <div class="field">
+          <label for="fCarburant">Carburant</label>
+          <select id="fCarburant"><option value="">Tous</option></select>
+        </div>
+        <div class="field">
+          <label for="fPrix">Budget max</label>
+          <select id="fPrix">
+            <option value="">Illimité</option>
+            <option value="10000">10 000 €</option>
+            <option value="20000">20 000 €</option>
+            <option value="30000">30 000 €</option>
+            <option value="50000">50 000 €</option>
+          </select>
+        </div>
+        <div class="field field-search">
+          <label for="fSearch">Recherche</label>
+          <input type="search" id="fSearch" placeholder="Ex : Clio, SUV, break…" />
+        </div>
+        <button class="btn btn-primary" id="btnReset" type="button">Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATALOGUE ============ -->
+  <section class="section" id="catalogue">
+    <div class="container">
+      <div class="section-head">
+        <h2>Notre catalogue</h2>
+        <p id="resultCount">Chargement des véhicules…</p>
+      </div>
+      <div class="car-grid" id="carGrid"><!-- injecté en JS --></div>
+      <p class="no-result" id="noResult" hidden>Aucun véhicule ne correspond à votre recherche 🙁</p>
+    </div>
+  </section>
+
+  <!-- ============ POURQUOI NOUS ============ -->
+  <section class="section section-alt" id="pourquoi">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pourquoi choisir InaAuto ?</h2>
+        <p>Un accompagnement de A à Z, en toute confiance.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><span class="feature-ico">✅</span><h3>Véhicules certifiés</h3><p>Chaque voiture passe un contrôle de 120 points avant la vente.</p></div>
+        <div class="feature"><span class="feature-ico">💶</span><h3>Financement flexible</h3><p>Crédit et LOA adaptés à votre budget, réponse en 24h.</p></div>
+        <div class="feature"><span class="feature-ico">🔁</span><h3>Reprise cash</h3><p>Nous reprenons votre ancien véhicule au meilleur prix.</p></div>
+        <div class="feature"><span class="feature-ico">🛡️</span><h3>Garantie incluse</h3><p>Jusqu'à 24 mois de garantie sur tous nos véhicules d'occasion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div>
+        <h2>Contactez-nous</h2>
+        <p>Une question sur un véhicule ? Envie d'un essai ? Écrivez-nous, nous répondons rapidement.</p>
+        <ul class="contact-list">
+          <li>📍 12 avenue des Constructeurs, 75000 Paris</li>
+          <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
+          <li>✉️ <a href="mailto:contact@inaauto.fr">contact@inaauto.fr</a></li>
+          <li>🕒 Lun–Sam : 9h – 19h</li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <label>Nom<input type="text" name="nom" required /></label>
+          <label>Email<input type="email" name="email" required /></label>
+        </div>
+        <label>Véhicule concerné<input type="text" name="vehicule" placeholder="Optionnel" /></label>
+        <label>Message<textarea name="message" rows="4" required></textarea></label>
+        <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+        <p class="form-feedback" id="formFeedback" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="#top" class="logo logo-light"><span class="logo-mark">🚗</span><span class="logo-text">Ina<strong>Auto</strong></span></a>
+        <p>Votre concessionnaire multimarques depuis 2010.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#catalogue">Catalogue</a>
+        <a href="#pourquoi">Nos services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> InaAuto — Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- ============ MODALE FICHE VÉHICULE ============ -->
+  <div class="modal" id="carModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Fermer">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+<script>
+// Base de données des véhicules (démo).
+// Remplacez / ajoutez vos propres voitures ici.
+// Les images utilisent des dégradés SVG intégrés pour rester 100% hors-ligne.
+const CARS = [
+  {
+    id: 1, marque: "Renault", modele: "Clio V", annee: 2022,
+    prix: 15900, km: 24000, carburant: "Essence", boite: "Manuelle",
+    puissance: "90 ch", places: 5, couleur: "#f2b705",
+    desc: "Citadine polyvalente, faible consommation, idéale pour la ville comme pour les trajets quotidiens."
+  },
+  {
+    id: 2, marque: "Peugeot", modele: "3008 GT", annee: 2021,
+    prix: 28500, km: 41000, carburant: "Diesel", boite: "Automatique",
+    puissance: "130 ch", places: 5, couleur: "#0f4c81",
+    desc: "SUV familial spacieux, finition GT, intérieur cuir et grand coffre. Très bien entretenu."
+  },
+  {
+    id: 3, marque: "Tesla", modele: "Model 3", annee: 2023,
+    prix: 39900, km: 12000, carburant: "Électrique", boite: "Automatique",
+    puissance: "283 ch", places: 5, couleur: "#c0392b",
+    desc: "Berline 100% électrique, autonomie 490 km, Autopilot, entretien minimal."
+  },
+  {
+    id: 4, marque: "Volkswagen", modele: "Golf 8", annee: 2020,
+    prix: 21900, km: 55000, carburant: "Essence", boite: "Manuelle",
+    puissance: "110 ch", places: 5, couleur: "#2c3e50",
+    desc: "La référence des compactes. Confort, fiabilité et tenue de route irréprochables."
+  },
+  {
+    id: 5, marque: "Toyota", modele: "Yaris Hybride", annee: 2022,
+    prix: 18400, km: 30000, carburant: "Hybride", boite: "Automatique",
+    puissance: "116 ch", places: 5, couleur: "#16a085",
+    desc: "Hybride auto-rechargeable, ultra économique en ville, fiabilité légendaire Toyota."
+  },
+  {
+    id: 6, marque: "BMW", modele: "Série 1", annee: 2021,
+    prix: 26900, km: 38000, carburant: "Diesel", boite: "Automatique",
+    puissance: "150 ch", places: 5, couleur: "#34495e",
+    desc: "Compacte premium dynamique, pack sport, sièges chauffants et navigation intégrée."
+  },
+  {
+    id: 7, marque: "Audi", modele: "Q5 Quattro", annee: 2019,
+    prix: 34500, km: 68000, carburant: "Diesel", boite: "Automatique",
+    puissance: "190 ch", places: 5, couleur: "#7f8c8d",
+    desc: "SUV premium 4 roues motrices, très confortable, parfait pour les longs trajets et la montagne."
+  },
+  {
+    id: 8, marque: "Renault", modele: "Captur E-Tech", annee: 2023,
+    prix: 23900, km: 15000, carburant: "Hybride", boite: "Automatique",
+    puissance: "145 ch", places: 5, couleur: "#e67e22",
+    desc: "SUV urbain hybride rechargeable, look moderne, équipement complet et faible consommation."
+  },
+  {
+    id: 9, marque: "Peugeot", modele: "208 Allure", annee: 2022,
+    prix: 16700, km: 27000, carburant: "Essence", boite: "Manuelle",
+    puissance: "100 ch", places: 5, couleur: "#8e44ad",
+    desc: "Citadine au design affirmé, i-Cockpit 3D, écran tactile et caméra de recul."
+  },
+  {
+    id: 10, marque: "Tesla", modele: "Model Y", annee: 2023,
+    prix: 46900, km: 9000, carburant: "Électrique", boite: "Automatique",
+    puissance: "351 ch", places: 5, couleur: "#2980b9",
+    desc: "SUV électrique spacieux, grande autonomie, coffre géant et technologie de pointe."
+  },
+  {
+    id: 11, marque: "Volkswagen", modele: "T-Roc", annee: 2020,
+    prix: 22400, km: 49000, carburant: "Essence", boite: "Manuelle",
+    puissance: "115 ch", places: 5, couleur: "#d35400",
+    desc: "SUV compact au style jeune, position de conduite surélevée, très agréable au quotidien."
+  },
+  {
+    id: 12, marque: "Toyota", modele: "Corolla TS", annee: 2021,
+    prix: 24900, km: 44000, carburant: "Hybride", boite: "Automatique",
+    puissance: "122 ch", places: 5, couleur: "#27ae60",
+    desc: "Break hybride spacieux et économique, idéal familles et gros rouleurs."
+  }
+];
+
+/* ================= InaAuto — logique du site ================= */
+(function () {
+  "use strict";
+
+  const grid = document.getElementById("carGrid");
+  const resultCount = document.getElementById("resultCount");
+  const noResult = document.getElementById("noResult");
+  const fMarque = document.getElementById("fMarque");
+  const fCarburant = document.getElementById("fCarburant");
+  const fPrix = document.getElementById("fPrix");
+  const fSearch = document.getElementById("fSearch");
+  const btnReset = document.getElementById("btnReset");
+
+  const euro = (n) => n.toLocaleString("fr-FR") + " €";
+  const km = (n) => n.toLocaleString("fr-FR") + " km";
+
+  /* --- Vignette véhicule : SVG dégradé + silhouette (aucune image externe) --- */
+  function carThumb(car) {
+    return `
+      <svg class="car-thumb" viewBox="0 0 400 240" role="img" aria-label="${car.marque} ${car.modele}">
+        <defs>
+          <linearGradient id="g${car.id}" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${car.couleur}"/>
+            <stop offset="100%" stop-color="#111827"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="240" fill="url(#g${car.id})"/>
+        <g fill="rgba(255,255,255,.92)" transform="translate(60,120)">
+          <path d="M20 40 L45 12 Q52 4 64 4 L180 4 Q192 4 200 14 L228 40 L268 48 Q280 50 280 62 L280 78 Q280 86 272 86 L248 86 A22 22 0 0 0 204 86 L96 86 A22 22 0 0 0 52 86 L24 86 Q12 86 12 74 L12 54 Q12 44 20 40 Z"/>
+          <circle cx="74" cy="90" r="15" fill="#1f2937"/>
+          <circle cx="226" cy="90" r="15" fill="#1f2937"/>
+        </g>
+        <text x="20" y="34" fill="rgba(255,255,255,.85)" font-family="system-ui" font-size="18" font-weight="700">${car.marque}</text>
+      </svg>`;
+  }
+
+  function badge(txt) { return `<span class="tag">${txt}</span>`; }
+
+  function carCard(car) {
+    return `
+      <article class="car-card" data-id="${car.id}">
+        <div class="car-media">${carThumb(car)}
+          <span class="car-price">${euro(car.prix)}</span>
+        </div>
+        <div class="car-body">
+          <h3>${car.marque} ${car.modele}</h3>
+          <p class="car-sub">${car.annee} • ${km(car.km)}</p>
+          <div class="car-tags">${badge(car.carburant)}${badge(car.boite)}${badge(car.puissance)}</div>
+          <button class="btn btn-outline btn-block" data-detail="${car.id}">Voir la fiche</button>
+        </div>
+      </article>`;
+  }
+
+  /* --- Remplir les listes déroulantes à partir des données --- */
+  function populateFilters() {
+    const marques = [...new Set(CARS.map((c) => c.marque))].sort();
+    const carbs = [...new Set(CARS.map((c) => c.carburant))].sort();
+    marques.forEach((m) => fMarque.add(new Option(m, m)));
+    carbs.forEach((c) => fCarburant.add(new Option(c, c)));
+  }
+
+  /* --- Filtrage --- */
+  function applyFilters() {
+    const q = fSearch.value.trim().toLowerCase();
+    const list = CARS.filter((c) => {
+      if (fMarque.value && c.marque !== fMarque.value) return false;
+      if (fCarburant.value && c.carburant !== fCarburant.value) return false;
+      if (fPrix.value && c.prix > Number(fPrix.value)) return false;
+      if (q) {
+        const hay = `${c.marque} ${c.modele} ${c.carburant} ${c.boite}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    render(list);
+  }
+
+  function render(list) {
+    grid.innerHTML = list.map(carCard).join("");
+    noResult.hidden = list.length !== 0;
+    resultCount.textContent =
+      list.length === 0
+        ? "Aucun résultat"
+        : `${list.length} véhicule${list.length > 1 ? "s" : ""} disponible${list.length > 1 ? "s" : ""}`;
+  }
+
+  /* --- Fiche véhicule (modale) --- */
+  const modal = document.getElementById("carModal");
+  const modalContent = document.getElementById("modalContent");
+
+  function openModal(car) {
+    modalContent.innerHTML = `
+      <div class="modal-media">${carThumb(car)}</div>
+      <div class="modal-info">
+        <h2>${car.marque} ${car.modele}</h2>
+        <p class="modal-price">${euro(car.prix)}</p>
+        <p class="modal-desc">${car.desc}</p>
+        <dl class="specs">
+          <div><dt>Année</dt><dd>${car.annee}</dd></div>
+          <div><dt>Kilométrage</dt><dd>${km(car.km)}</dd></div>
+          <div><dt>Carburant</dt><dd>${car.carburant}</dd></div>
+          <div><dt>Boîte</dt><dd>${car.boite}</dd></div>
+          <div><dt>Puissance</dt><dd>${car.puissance}</dd></div>
+          <div><dt>Places</dt><dd>${car.places}</dd></div>
+        </dl>
+        <a href="#contact" class="btn btn-primary btn-block" data-close>Demander un essai</a>
+      </div>`;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  /* --- Événements --- */
+  [fMarque, fCarburant, fPrix].forEach((el) => el.addEventListener("change", applyFilters));
+  fSearch.addEventListener("input", applyFilters);
+  btnReset.addEventListener("click", () => {
+    fMarque.value = ""; fCarburant.value = ""; fPrix.value = ""; fSearch.value = "";
+    applyFilters();
+  });
+
+  grid.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-detail]");
+    if (!btn) return;
+    const car = CARS.find((c) => c.id === Number(btn.dataset.detail));
+    if (car) openModal(car);
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target.hasAttribute("data-close") || e.target.classList.contains("modal-backdrop")) {
+      closeModal();
+    }
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+  /* --- Menu mobile --- */
+  const navToggle = document.getElementById("navToggle");
+  const mainNav = document.getElementById("mainNav");
+  navToggle.addEventListener("click", () => mainNav.classList.toggle("open"));
+  mainNav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") mainNav.classList.remove("open");
+  });
+
+  /* --- Formulaire de contact (démo, pas d'envoi réel) --- */
+  const form = document.getElementById("contactForm");
+  const feedback = document.getElementById("formFeedback");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      feedback.hidden = false;
+      feedback.className = "form-feedback error";
+      feedback.textContent = "Merci de remplir les champs obligatoires.";
+      return;
+    }
+    feedback.hidden = false;
+    feedback.className = "form-feedback success";
+    feedback.textContent = "✅ Merci ! Votre demande a bien été envoyée, nous vous recontactons rapidement.";
+    form.reset();
+  });
+
+  /* --- Init --- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+  populateFilters();
+  applyFilters();
+})();
+
+</script>
+</body>
+</html>
