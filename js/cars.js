@@ -37,10 +37,11 @@ const CARS = [
     annonce: "", site: "Leboncoin", vendu: false
   },
   {
-    id: 3, marque: "Renault", modele: "Modus", annee: 2008,
-    prix: 4490, km: 120000, carburant: "Essence", boite: "Manuelle",
-    puissance: "75 ch", places: 5, couleur: "#2980b9",
-    desc: "Petit monospace pratique et fiable, idéal premier véhicule ou trajets du quotidien. Entretenu, prêt à rouler.",
+    // ⚠️ prix à confirmer (absent de l'annonce transmise)
+    id: 3, marque: "Renault", modele: "Modus Expression", annee: 2009,
+    prix: 4490, km: 126000, carburant: "Diesel", boite: "Manuelle",
+    puissance: "86 ch", places: 5, couleur: "#2980b9",
+    desc: "Monospace 1.5 dCi 90 Expression Euro 5, première main, 126 000 km certifiés. Ex-administration française (véhicule français), entretiens réguliers chez Renault, très bon état extérieur comme intérieur. Contrôle technique de moins de 6 mois. Idéal jeunes conducteurs : consomme très peu, assurance pas chère, véhicule économique. Équipée : climatisation, régulateur/limiteur de vitesse, radio CD, vitres et rétroviseurs électriques, fixations ISOFIX… Prix à débattre dans la limite du raisonnable.",
     annonce: "", site: "Leboncoin", vendu: false
   }
 ];
