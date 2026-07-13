@@ -41,6 +41,7 @@
       <article class="car-card" data-id="${car.id}">
         <div class="car-media">${carThumb(car)}
           <span class="car-price">${euro(car.prix)}</span>
+          ${car.leboncoin ? '<span class="car-lbc">Sur Leboncoin</span>' : ''}
         </div>
         <div class="car-body">
           <h3>${car.marque} ${car.modele}</h3>
@@ -89,6 +90,9 @@
   const modalContent = document.getElementById("modalContent");
 
   function openModal(car) {
+    const lbcBtn = car.leboncoin
+      ? `<a href="${car.leboncoin}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur Leboncoin ↗</a>`
+      : "";
     modalContent.innerHTML = `
       <div class="modal-media">${carThumb(car)}</div>
       <div class="modal-info">
@@ -104,6 +108,7 @@
           <div><dt>Places</dt><dd>${car.places}</dd></div>
         </dl>
         <a href="#contact" class="btn btn-primary btn-block" data-close>Demander un essai</a>
+        ${lbcBtn}
       </div>`;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -162,6 +167,8 @@
   });
 
   /* --- Init --- */
+  const lbcProfile = document.getElementById("lbcProfileLink");
+  if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
   document.getElementById("year").textContent = new Date().getFullYear();
   populateFilters();
   applyFilters();

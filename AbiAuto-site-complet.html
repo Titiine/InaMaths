@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InaAuto — Vente de voitures neuves et d'occasion</title>
-  <meta name="description" content="InaAuto, votre concessionnaire de confiance. Découvrez notre sélection de voitures neuves et d'occasion au meilleur prix." />
+  <title>AbiAuto — Mandataire automobile à Évry (Île-de-France)</title>
+  <meta name="description" content="AbiAuto, mandataire automobile basé à Évry en Île-de-France depuis 2020. Voitures neuves et d'occasion au meilleur prix, en partenariat avec des professionnels de l'automobile." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <style>
 /* ================= InaAuto — styles ================= */
@@ -54,6 +54,8 @@ a { color: inherit; text-decoration: none; }
 .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.3); }
 .btn-ghost:hover { background: rgba(255,255,255,.22); }
+.btn-lbc { background: #ff6e14; color: #fff; margin-top: .6rem; }
+.btn-lbc:hover { background: #e85f08; transform: translateY(-1px); }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -124,6 +126,11 @@ a { color: inherit; text-decoration: none; }
   font-weight: 800; padding: .35rem .8rem; border-radius: 999px; font-size: .95rem;
   box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
+.car-lbc {
+  position: absolute; top: 10px; left: 10px; background: #ff6e14; color: #fff;
+  font-weight: 700; padding: .2rem .6rem; border-radius: 999px; font-size: .72rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
 .car-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
 .car-body h3 { font-size: 1.15rem; font-weight: 700; }
 .car-sub { color: var(--muted); font-size: .9rem; margin-top: -.4rem; }
@@ -167,6 +174,7 @@ a { color: inherit; text-decoration: none; }
 .footer-copy { width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.4rem; margin-top: 1rem; font-size: .82rem; color: #8892aa; }
 
 /* ---------- Modale ---------- */
+.modal[hidden] { display: none; }
 .modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .modal-backdrop { position: absolute; inset: 0; background: rgba(8, 12, 28, .6); backdrop-filter: blur(3px); }
 .modal-box {
@@ -216,7 +224,7 @@ a { color: inherit; text-decoration: none; }
     <div class="container header-inner">
       <a href="#top" class="logo">
         <span class="logo-mark">🚗</span>
-        <span class="logo-text">Ina<strong>Auto</strong></span>
+        <span class="logo-text">Abi<strong>Auto</strong></span>
       </a>
       <nav class="main-nav" id="mainNav">
         <a href="#catalogue">Catalogue</a>
@@ -232,19 +240,20 @@ a { color: inherit; text-decoration: none; }
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-content">
-        <p class="hero-eyebrow">Concessionnaire multimarques</p>
+        <p class="hero-eyebrow">Mandataire automobile • Évry, Île-de-France</p>
         <h1>Trouvez la voiture <span class="accent">de vos rêves</span></h1>
         <p class="hero-lead">
-          Un large choix de véhicules neufs et d'occasion, contrôlés et garantis.
-          Financement sur mesure et reprise de votre ancien véhicule.
+          Mandataire auto basé à Évry depuis 2020, je déniche pour vous le véhicule idéal,
+          neuf ou d'occasion, au meilleur prix. En partenariat avec des professionnels
+          de confiance (garage mécanique, carrosserie, financement).
         </p>
         <div class="hero-actions">
           <a href="#catalogue" class="btn btn-primary">Voir le catalogue</a>
           <a href="#contact" class="btn btn-ghost">Prendre rendez-vous</a>
         </div>
         <div class="hero-stats">
-          <div><strong>350+</strong><span>véhicules en stock</span></div>
-          <div><strong>15 ans</strong><span>d'expérience</span></div>
+          <div><strong>Depuis 2020</strong><span>mandataire de confiance</span></div>
+          <div><strong>Évry</strong><span>Île-de-France</span></div>
           <div><strong>4,8/5</strong><span>avis clients</span></div>
         </div>
       </div>
@@ -288,6 +297,7 @@ a { color: inherit; text-decoration: none; }
       <div class="section-head">
         <h2>Notre catalogue</h2>
         <p id="resultCount">Chargement des véhicules…</p>
+        <a href="#" id="lbcProfileLink" class="btn btn-lbc" target="_blank" rel="noopener">Voir toutes mes annonces sur Leboncoin ↗</a>
       </div>
       <div class="car-grid" id="carGrid"><!-- injecté en JS --></div>
       <p class="no-result" id="noResult" hidden>Aucun véhicule ne correspond à votre recherche 🙁</p>
@@ -298,14 +308,14 @@ a { color: inherit; text-decoration: none; }
   <section class="section section-alt" id="pourquoi">
     <div class="container">
       <div class="section-head">
-        <h2>Pourquoi choisir InaAuto ?</h2>
-        <p>Un accompagnement de A à Z, en toute confiance.</p>
+        <h2>Pourquoi choisir AbiAuto ?</h2>
+        <p>Un mandataire de proximité, un accompagnement de A à Z en toute confiance.</p>
       </div>
       <div class="features">
-        <div class="feature"><span class="feature-ico">✅</span><h3>Véhicules certifiés</h3><p>Chaque voiture passe un contrôle de 120 points avant la vente.</p></div>
-        <div class="feature"><span class="feature-ico">💶</span><h3>Financement flexible</h3><p>Crédit et LOA adaptés à votre budget, réponse en 24h.</p></div>
-        <div class="feature"><span class="feature-ico">🔁</span><h3>Reprise cash</h3><p>Nous reprenons votre ancien véhicule au meilleur prix.</p></div>
-        <div class="feature"><span class="feature-ico">🛡️</span><h3>Garantie incluse</h3><p>Jusqu'à 24 mois de garantie sur tous nos véhicules d'occasion.</p></div>
+        <div class="feature"><span class="feature-ico">🔎</span><h3>Recherche personnalisée</h3><p>Je déniche pour vous le véhicule qui correspond à votre besoin et à votre budget.</p></div>
+        <div class="feature"><span class="feature-ico">🔧</span><h3>Réseau de pros</h3><p>Partenariats avec garage mécanique et carrosserie pour des véhicules révisés.</p></div>
+        <div class="feature"><span class="feature-ico">💶</span><h3>Financement</h3><p>Solutions de crédit et LOA adaptées grâce à mes partenaires financiers.</p></div>
+        <div class="feature"><span class="feature-ico">🤝</span><h3>Confiance depuis 2020</h3><p>Mandataire installé à Évry, à votre écoute et disponible localement.</p></div>
       </div>
     </div>
   </section>
@@ -317,9 +327,9 @@ a { color: inherit; text-decoration: none; }
         <h2>Contactez-nous</h2>
         <p>Une question sur un véhicule ? Envie d'un essai ? Écrivez-nous, nous répondons rapidement.</p>
         <ul class="contact-list">
-          <li>📍 12 avenue des Constructeurs, 75000 Paris</li>
+          <li>📍 Évry-Courcouronnes (91), Île-de-France</li>
           <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
-          <li>✉️ <a href="mailto:contact@inaauto.fr">contact@inaauto.fr</a></li>
+          <li>✉️ <a href="mailto:contact@abiauto.fr">contact@abiauto.fr</a></li>
           <li>🕒 Lun–Sam : 9h – 19h</li>
         </ul>
       </div>
@@ -340,8 +350,8 @@ a { color: inherit; text-decoration: none; }
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <a href="#top" class="logo logo-light"><span class="logo-mark">🚗</span><span class="logo-text">Ina<strong>Auto</strong></span></a>
-        <p>Votre concessionnaire multimarques depuis 2010.</p>
+        <a href="#top" class="logo logo-light"><span class="logo-mark">🚗</span><span class="logo-text">Abi<strong>Auto</strong></span></a>
+        <p>Votre mandataire automobile à Évry depuis 2020.</p>
       </div>
       <div class="footer-links">
         <a href="#catalogue">Catalogue</a>
@@ -362,81 +372,97 @@ a { color: inherit; text-decoration: none; }
   </div>
 
 <script>
-// Base de données des véhicules (démo).
+// Lien vers votre profil / boutique Leboncoin (remplacez par votre vraie adresse).
+const LEBONCOIN_PROFILE = "https://www.leboncoin.fr/profil/VOTRE_PROFIL";
+
+// Base de données des véhicules.
 // Remplacez / ajoutez vos propres voitures ici.
+// Champ "leboncoin" : collez l'URL exacte de l'annonce (laissez "" si pas encore publiée).
 // Les images utilisent des dégradés SVG intégrés pour rester 100% hors-ligne.
 const CARS = [
   {
     id: 1, marque: "Renault", modele: "Clio V", annee: 2022,
     prix: 15900, km: 24000, carburant: "Essence", boite: "Manuelle",
     puissance: "90 ch", places: 5, couleur: "#f2b705",
-    desc: "Citadine polyvalente, faible consommation, idéale pour la ville comme pour les trajets quotidiens."
+    desc: "Citadine polyvalente, faible consommation, idéale pour la ville comme pour les trajets quotidiens.",
+    leboncoin: "https://www.leboncoin.fr/voitures/DEMO_clio"
   },
   {
     id: 2, marque: "Peugeot", modele: "3008 GT", annee: 2021,
     prix: 28500, km: 41000, carburant: "Diesel", boite: "Automatique",
     puissance: "130 ch", places: 5, couleur: "#0f4c81",
-    desc: "SUV familial spacieux, finition GT, intérieur cuir et grand coffre. Très bien entretenu."
+    desc: "SUV familial spacieux, finition GT, intérieur cuir et grand coffre. Très bien entretenu.",
+    leboncoin: ""
   },
   {
     id: 3, marque: "Tesla", modele: "Model 3", annee: 2023,
     prix: 39900, km: 12000, carburant: "Électrique", boite: "Automatique",
     puissance: "283 ch", places: 5, couleur: "#c0392b",
-    desc: "Berline 100% électrique, autonomie 490 km, Autopilot, entretien minimal."
+    desc: "Berline 100% électrique, autonomie 490 km, Autopilot, entretien minimal.",
+    leboncoin: "https://www.leboncoin.fr/voitures/DEMO_model3"
   },
   {
     id: 4, marque: "Volkswagen", modele: "Golf 8", annee: 2020,
     prix: 21900, km: 55000, carburant: "Essence", boite: "Manuelle",
     puissance: "110 ch", places: 5, couleur: "#2c3e50",
-    desc: "La référence des compactes. Confort, fiabilité et tenue de route irréprochables."
+    desc: "La référence des compactes. Confort, fiabilité et tenue de route irréprochables.",
+    leboncoin: ""
   },
   {
     id: 5, marque: "Toyota", modele: "Yaris Hybride", annee: 2022,
     prix: 18400, km: 30000, carburant: "Hybride", boite: "Automatique",
     puissance: "116 ch", places: 5, couleur: "#16a085",
-    desc: "Hybride auto-rechargeable, ultra économique en ville, fiabilité légendaire Toyota."
+    desc: "Hybride auto-rechargeable, ultra économique en ville, fiabilité légendaire Toyota.",
+    leboncoin: ""
   },
   {
     id: 6, marque: "BMW", modele: "Série 1", annee: 2021,
     prix: 26900, km: 38000, carburant: "Diesel", boite: "Automatique",
     puissance: "150 ch", places: 5, couleur: "#34495e",
-    desc: "Compacte premium dynamique, pack sport, sièges chauffants et navigation intégrée."
+    desc: "Compacte premium dynamique, pack sport, sièges chauffants et navigation intégrée.",
+    leboncoin: ""
   },
   {
     id: 7, marque: "Audi", modele: "Q5 Quattro", annee: 2019,
     prix: 34500, km: 68000, carburant: "Diesel", boite: "Automatique",
     puissance: "190 ch", places: 5, couleur: "#7f8c8d",
-    desc: "SUV premium 4 roues motrices, très confortable, parfait pour les longs trajets et la montagne."
+    desc: "SUV premium 4 roues motrices, très confortable, parfait pour les longs trajets et la montagne.",
+    leboncoin: ""
   },
   {
     id: 8, marque: "Renault", modele: "Captur E-Tech", annee: 2023,
     prix: 23900, km: 15000, carburant: "Hybride", boite: "Automatique",
     puissance: "145 ch", places: 5, couleur: "#e67e22",
-    desc: "SUV urbain hybride rechargeable, look moderne, équipement complet et faible consommation."
+    desc: "SUV urbain hybride rechargeable, look moderne, équipement complet et faible consommation.",
+    leboncoin: ""
   },
   {
     id: 9, marque: "Peugeot", modele: "208 Allure", annee: 2022,
     prix: 16700, km: 27000, carburant: "Essence", boite: "Manuelle",
     puissance: "100 ch", places: 5, couleur: "#8e44ad",
-    desc: "Citadine au design affirmé, i-Cockpit 3D, écran tactile et caméra de recul."
+    desc: "Citadine au design affirmé, i-Cockpit 3D, écran tactile et caméra de recul.",
+    leboncoin: ""
   },
   {
     id: 10, marque: "Tesla", modele: "Model Y", annee: 2023,
     prix: 46900, km: 9000, carburant: "Électrique", boite: "Automatique",
     puissance: "351 ch", places: 5, couleur: "#2980b9",
-    desc: "SUV électrique spacieux, grande autonomie, coffre géant et technologie de pointe."
+    desc: "SUV électrique spacieux, grande autonomie, coffre géant et technologie de pointe.",
+    leboncoin: ""
   },
   {
     id: 11, marque: "Volkswagen", modele: "T-Roc", annee: 2020,
     prix: 22400, km: 49000, carburant: "Essence", boite: "Manuelle",
     puissance: "115 ch", places: 5, couleur: "#d35400",
-    desc: "SUV compact au style jeune, position de conduite surélevée, très agréable au quotidien."
+    desc: "SUV compact au style jeune, position de conduite surélevée, très agréable au quotidien.",
+    leboncoin: ""
   },
   {
     id: 12, marque: "Toyota", modele: "Corolla TS", annee: 2021,
     prix: 24900, km: 44000, carburant: "Hybride", boite: "Automatique",
     puissance: "122 ch", places: 5, couleur: "#27ae60",
-    desc: "Break hybride spacieux et économique, idéal familles et gros rouleurs."
+    desc: "Break hybride spacieux et économique, idéal familles et gros rouleurs.",
+    leboncoin: ""
   }
 ];
 
@@ -483,6 +509,7 @@ const CARS = [
       <article class="car-card" data-id="${car.id}">
         <div class="car-media">${carThumb(car)}
           <span class="car-price">${euro(car.prix)}</span>
+          ${car.leboncoin ? '<span class="car-lbc">Sur Leboncoin</span>' : ''}
         </div>
         <div class="car-body">
           <h3>${car.marque} ${car.modele}</h3>
@@ -531,6 +558,9 @@ const CARS = [
   const modalContent = document.getElementById("modalContent");
 
   function openModal(car) {
+    const lbcBtn = car.leboncoin
+      ? `<a href="${car.leboncoin}" class="btn btn-lbc btn-block" target="_blank" rel="noopener">Voir l'annonce sur Leboncoin ↗</a>`
+      : "";
     modalContent.innerHTML = `
       <div class="modal-media">${carThumb(car)}</div>
       <div class="modal-info">
@@ -546,6 +576,7 @@ const CARS = [
           <div><dt>Places</dt><dd>${car.places}</dd></div>
         </dl>
         <a href="#contact" class="btn btn-primary btn-block" data-close>Demander un essai</a>
+        ${lbcBtn}
       </div>`;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -604,6 +635,8 @@ const CARS = [
   });
 
   /* --- Init --- */
+  const lbcProfile = document.getElementById("lbcProfileLink");
+  if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
   document.getElementById("year").textContent = new Date().getFullYear();
   populateFilters();
   applyFilters();
