@@ -7,6 +7,16 @@ const LEBONCOIN_PROFILE = "https://www.leboncoin.fr/profile/4dcd2995-01e9-4c3a-a
 // Agenda (ex: "https://calendly.com/abiauto/essai"). Laissez "" pour ne rien afficher.
 const BOOKING_URL = "";
 
+// ============ Gestion des annonces via Google Sheets (optionnel) ============
+// Pour gérer vos voitures depuis un tableur Google SANS retoucher le site :
+//   1. Créez un Google Sheets avec, en 1re ligne, ces colonnes (voir modèle
+//      "annonces-modele.csv") : marque, modele, annee, prix, km, carburant,
+//      boite, puissance, places, description, lien_annonce, site, vendu, couleur, photos
+//   2. Menu Fichier ▸ Partager ▸ Publier sur le Web ▸ format « .csv » ▸ Publier
+//   3. Collez l'URL obtenue ci-dessous.
+// Tant que ce champ est vide, le site utilise la liste CARS ci-dessous.
+const SHEET_URL = "";
+
 // ============ Base de données des véhicules ============
 // Pour chaque voiture :
 //   - annonce : URL exacte de l'annonce ("" si pas encore publiée)

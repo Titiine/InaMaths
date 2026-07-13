@@ -6,6 +6,9 @@
   const resultCount = document.getElementById("resultCount");
   const noResult = document.getElementById("noResult");
 
+  // Liste active des véhicules (remplie au chargement : Google Sheets ou liste locale).
+  let activeCars = CARS;
+
   const euro = (n) => n.toLocaleString("fr-FR") + " €";
   const km = (n) => n.toLocaleString("fr-FR") + " km";
 
@@ -117,7 +120,7 @@
   grid.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-detail]");
     if (!btn) return;
-    const car = CARS.find((c) => c.id === Number(btn.dataset.detail));
+    const car = activeCars.find((c) => c.id === Number(btn.dataset.detail));
     if (car) openModal(car);
   });
 
@@ -172,6 +175,83 @@
   }
 
   document.getElementById("year").textContent = new Date().getFullYear();
-  // Les véhicules vendus restent dans les données mais ne sont pas affichés.
-  render(CARS.filter((c) => !c.vendu));
+
+  // Charge les véhicules depuis Google Sheets si configuré, sinon la liste locale.
+  loadCars().then((list) => {
+    activeCars = list;
+    // Les véhicules vendus restent dans les données mais ne sont pas affichés.
+    render(list.filter((c) => !c.vendu));
+  });
+
+  /* --- Lecture optionnelle depuis un Google Sheets publié en CSV --- */
+  async function loadCars() {
+    if (typeof SHEET_URL === "string" && SHEET_URL) {
+      try {
+        const res = await fetch(SHEET_URL, { cache: "no-store" });
+        if (res.ok) {
+          const cars = rowsToCars(parseCSV(await res.text()));
+          if (cars.length) return cars;
+        }
+      } catch (e) {
+        // En cas d'échec (hors-ligne, URL invalide…), on garde la liste locale.
+      }
+    }
+    return CARS;
+  }
+
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = "", inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQ) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else inQ = false; }
+        else field += c;
+      } else if (c === '"') { inQ = true; }
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\r") { /* ignoré */ }
+      else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+      else field += c;
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function rowsToCars(rows) {
+    if (rows.length < 2) return [];
+    const norm = (s) => (s || "").toString().trim().toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    const headers = rows[0].map(norm);
+    const idx = (names) => { for (const n of names) { const i = headers.indexOf(n); if (i >= 0) return i; } return -1; };
+    const col = {
+      marque: idx(["marque"]), modele: idx(["modele"]), annee: idx(["annee"]),
+      prix: idx(["prix"]), km: idx(["km", "kilometrage"]),
+      carburant: idx(["carburant", "energie"]), boite: idx(["boite", "boite_de_vitesse", "transmission"]),
+      puissance: idx(["puissance", "chevaux", "ch"]), places: idx(["places", "nombre_de_places"]),
+      desc: idx(["description", "desc"]), annonce: idx(["lien_annonce", "lien", "annonce", "url"]),
+      site: idx(["site", "plateforme"]), vendu: idx(["vendu", "statut"]),
+      couleur: idx(["couleur"]), photos: idx(["photos", "photo", "images"]),
+    };
+    const palette = ["#8e44ad", "#e67e22", "#2980b9", "#16a085", "#c0392b", "#0f4c81", "#d35400", "#27ae60"];
+    const num = (v) => { const n = parseInt((v || "").toString().replace(/[^\d]/g, ""), 10); return isNaN(n) ? 0 : n; };
+    const truthy = (v) => ["oui", "yes", "true", "1", "x", "vendu"].includes((v || "").toString().trim().toLowerCase());
+    const get = (r, i) => (i >= 0 && r[i] != null ? r[i].toString().trim() : "");
+    const cars = [];
+    for (let k = 1; k < rows.length; k++) {
+      const r = rows[k];
+      if (!r || (!get(r, col.marque) && !get(r, col.modele))) continue;
+      const photos = get(r, col.photos) ? get(r, col.photos).split(/[;\n|]+/).map((s) => s.trim()).filter(Boolean) : [];
+      cars.push({
+        id: cars.length + 1,
+        marque: get(r, col.marque), modele: get(r, col.modele),
+        annee: num(get(r, col.annee)), prix: num(get(r, col.prix)), km: num(get(r, col.km)),
+        carburant: get(r, col.carburant), boite: get(r, col.boite), puissance: get(r, col.puissance),
+        places: num(get(r, col.places)) || 5, desc: get(r, col.desc),
+        annonce: get(r, col.annonce), site: get(r, col.site) || "Leboncoin",
+        vendu: truthy(get(r, col.vendu)), couleur: get(r, col.couleur) || palette[cars.length % palette.length],
+        photos: photos,
+      });
+    }
+    return cars;
+  }
 })();
