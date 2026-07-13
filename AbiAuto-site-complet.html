@@ -592,8 +592,9 @@ a { color: inherit; text-decoration: none; }
       <div>
         <h2>Contactez-moi</h2>
         <p><strong>Je préfère le téléphone</strong> : contact immédiat, et en quelques questions
-        je cerne précisément votre besoin. Sinon, laissez un message avec vos disponibilités
-        pour un essai, je vous rappelle très vite.</p>
+        je cerne précisément votre besoin. Vous pouvez aussi m'écrire directement sur
+        Leboncoin, je réponds rapidement.</p>
+        <a href="#" id="lbcContactBtn" class="btn btn-lbc" target="_blank" rel="noopener">💬 M'écrire sur Leboncoin</a>
         <ul class="contact-list">
           <li>📍 Évry-Courcouronnes (91), Île-de-France</li>
           <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
@@ -939,8 +940,10 @@ const CARS = [
   });
 
   /* --- Init --- */
-  const lbcProfile = document.getElementById("lbcProfileLink");
-  if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
+  ["lbcProfileLink", "lbcContactBtn"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el && typeof LEBONCOIN_PROFILE === "string") el.href = LEBONCOIN_PROFILE;
+  });
 
   // Bouton de réservation en ligne (Calendly ou autre) : ne s'affiche que si BOOKING_URL est renseigné.
   const bookingBtn = document.getElementById("bookingBtn");

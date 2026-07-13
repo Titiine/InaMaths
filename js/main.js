@@ -175,8 +175,10 @@
   });
 
   /* --- Init --- */
-  const lbcProfile = document.getElementById("lbcProfileLink");
-  if (lbcProfile && typeof LEBONCOIN_PROFILE === "string") lbcProfile.href = LEBONCOIN_PROFILE;
+  ["lbcProfileLink", "lbcContactBtn"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el && typeof LEBONCOIN_PROFILE === "string") el.href = LEBONCOIN_PROFILE;
+  });
 
   // Bouton de réservation en ligne (Calendly ou autre) : ne s'affiche que si BOOKING_URL est renseigné.
   const bookingBtn = document.getElementById("bookingBtn");
