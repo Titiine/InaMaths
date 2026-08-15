@@ -30,6 +30,10 @@ export function HomeScreen({ navigate }: { navigate: (r: Route) => void }) {
           <span className="emoji">🎓</span>
           <span className="tile-title">{t('home_play')}</span>
         </button>
+        <button className="tile" onClick={() => navigate({ name: 'tables' })}>
+          <span className="emoji">✖️</span>
+          <span className="tile-title">{t('home_tables')}</span>
+        </button>
         <button className="tile" onClick={() => navigate({ name: 'avatar' })}>
           <span className="emoji">🧑‍🎨</span>
           <span className="tile-title">{t('home_avatar')}</span>

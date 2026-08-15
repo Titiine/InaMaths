@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, useCallback } 
 import type { ReactNode } from 'react'
 import type { AvatarConfig, AvatarType, GameState } from '../types'
 import { findOption, CATALOG } from '../data/catalog'
+import { factKey, pushResult } from '../logic/mastery'
 
 const STORAGE_KEY = 'inamaths.state'
 
@@ -18,6 +19,7 @@ const DEFAULT_STATE: GameState = {
   coins: 20,
   ownedItems: [],
   avatar: DEFAULT_AVATAR,
+  tableStats: {},
 }
 
 function loadState(): GameState {
@@ -29,6 +31,7 @@ function loadState(): GameState {
       coins: typeof parsed.coins === 'number' ? parsed.coins : DEFAULT_STATE.coins,
       ownedItems: Array.isArray(parsed.ownedItems) ? parsed.ownedItems : [],
       avatar: { ...DEFAULT_AVATAR, ...parsed.avatar, clothes: { ...DEFAULT_AVATAR.clothes, ...parsed.avatar?.clothes } },
+      tableStats: parsed.tableStats && typeof parsed.tableStats === 'object' ? parsed.tableStats : {},
     }
   } catch {
     return DEFAULT_STATE
@@ -43,6 +46,8 @@ interface GameContextValue extends GameState {
   setAvatarType: (type: AvatarType) => void
   setAvatarPart: (key: 'bodyColor' | 'eyes' | 'mouth' | 'accessory', id: string | null) => void
   setAvatarClothes: (zone: 'head' | 'belly' | 'legs', id: string | null) => void
+  recordTableResult: (a: number, b: number, correct: boolean) => void
+  resetTables: () => void
   resetProgress: () => void
 }
 
@@ -107,6 +112,17 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setState((s) => ({ ...s, avatar: { ...s.avatar, clothes: { ...s.avatar.clothes, [zone]: id } } }))
   }, [])
 
+  const recordTableResult = useCallback((a: number, b: number, correct: boolean) => {
+    setState((s) => {
+      const key = factKey(a, b)
+      return { ...s, tableStats: { ...s.tableStats, [key]: pushResult(s.tableStats[key], correct) } }
+    })
+  }, [])
+
+  const resetTables = useCallback(() => {
+    setState((s) => ({ ...s, tableStats: {} }))
+  }, [])
+
   const resetProgress = useCallback(() => setState(DEFAULT_STATE), [])
 
   const value = useMemo<GameContextValue>(
@@ -119,9 +135,23 @@ export function GameProvider({ children }: { children: ReactNode }) {
       setAvatarType,
       setAvatarPart,
       setAvatarClothes,
+      recordTableResult,
+      resetTables,
       resetProgress,
     }),
-    [state, addCoins, spendCoins, buyItem, isOwned, setAvatarType, setAvatarPart, setAvatarClothes, resetProgress],
+    [
+      state,
+      addCoins,
+      spendCoins,
+      buyItem,
+      isOwned,
+      setAvatarType,
+      setAvatarPart,
+      setAvatarClothes,
+      recordTableResult,
+      resetTables,
+      resetProgress,
+    ],
   )
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>

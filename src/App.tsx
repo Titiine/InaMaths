@@ -6,6 +6,8 @@ import { ResultsScreen } from './screens/ResultsScreen'
 import { ShopScreen } from './screens/ShopScreen'
 import { AvatarScreen } from './screens/AvatarScreen'
 import { GameScreen } from './screens/GameScreen'
+import { TablesScreen } from './screens/TablesScreen'
+import { MultiplicationScreen } from './screens/MultiplicationScreen'
 
 export type Route =
   | { name: 'home' }
@@ -15,6 +17,8 @@ export type Route =
   | { name: 'shop' }
   | { name: 'avatar' }
   | { name: 'game' }
+  | { name: 'tables' }
+  | { name: 'multiplication' }
 
 export function App() {
   const [route, setRoute] = useState<Route>({ name: 'home' })
@@ -33,6 +37,10 @@ export function App() {
       {route.name === 'shop' && <ShopScreen back={goHome} />}
       {route.name === 'avatar' && <AvatarScreen back={goHome} navigate={navigate} />}
       {route.name === 'game' && <GameScreen back={goHome} />}
+      {route.name === 'tables' && <TablesScreen back={goHome} navigate={navigate} />}
+      {route.name === 'multiplication' && (
+        <MultiplicationScreen back={() => navigate({ name: 'tables' })} navigate={navigate} />
+      )}
     </div>
   )
 }
