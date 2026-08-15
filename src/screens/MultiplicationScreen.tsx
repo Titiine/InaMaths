@@ -3,7 +3,7 @@ import type { Route } from '../App'
 import { useGame } from '../state/GameContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { TopBar } from '../components/TopBar'
-import { pickAdaptiveFacts } from '../logic/mastery'
+import { pickAdaptiveFacts, FACTORS } from '../logic/mastery'
 import type { Fact } from '../logic/mastery'
 
 const SESSION_SIZE = 8
@@ -47,13 +47,35 @@ interface Q extends Fact {
   choices: number[]
 }
 
-export function MultiplicationScreen({ back, navigate }: { back: () => void; navigate: (r: Route) => void }) {
+function shuffledFactors(): number[] {
+  return shuffle(FACTORS)
+}
+
+export function MultiplicationScreen({
+  table,
+  back,
+  navigate,
+}: {
+  table?: number
+  back: () => void
+  navigate: (r: Route) => void
+}) {
   const { t } = useLanguage()
   const { tableStats, recordTableResult, addCoins } = useGame()
 
-  // Sélection adaptative figée au montage (basée sur l'état courant des tables).
+  // Questions figées au montage : soit une table précise, soit une sélection
+  // adaptative qui cible les faits les moins sûrs.
   const questions = useMemo<Q[]>(() => {
-    const facts = pickAdaptiveFacts(tableStats, SESSION_SIZE)
+    let facts: Fact[]
+    if (table) {
+      // Table précise : chaque facteur 2..10 une fois, dans un ordre mélangé
+      // (complété si besoin pour atteindre la taille de séance).
+      const order = shuffledFactors()
+      while (order.length < SESSION_SIZE) order.push(...shuffledFactors())
+      facts = order.slice(0, SESSION_SIZE).map((b) => ({ a: table, b }))
+    } else {
+      facts = pickAdaptiveFacts(tableStats, SESSION_SIZE)
+    }
     return facts.map((f) => ({ ...f, choices: buildChoices(f.a, f.b) }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -115,6 +137,11 @@ export function MultiplicationScreen({ back, navigate }: { back: () => void; nav
   return (
     <>
       <TopBar onBack={back} />
+      {table && (
+        <h2 className="section-title center" style={{ marginBottom: 6 }}>
+          ✖️ {t('tables_table_of')} {table}
+        </h2>
+      )}
       <div className="progress-dots">
         {questions.map((_, i) => (
           <span key={i} className={`dot ${i < index ? 'done' : i === index ? 'current' : ''}`} />

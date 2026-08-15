@@ -63,6 +63,19 @@ const fr = {
   tables_trend_down: 'en baisse',
   tables_session_done: 'Séance terminée !',
   tables_view_panorama: 'Voir mes tables',
+  tables_choose: 'Choisir une table',
+  tables_mix: 'Mélange adaptatif',
+  tables_table_of: 'Table du',
+
+  // Espace parent / testeur
+  parent_space: 'Espace parent',
+  parent_gate_title: 'Réservé aux adultes',
+  parent_gate_hint: 'Réponds pour continuer :',
+  parent_gate_placeholder: 'Réponse',
+  parent_gate_wrong: 'Mauvaise réponse, réessaie.',
+  parent_gate_enter: 'Entrer',
+  tester_banner: 'Mode parent : les essais ne sont pas enregistrés.',
+  tester_exit: 'Quitter le mode parent',
 
   // Choix des exercices
   chooseLevel: 'Choisis ton niveau',
@@ -199,6 +212,18 @@ const en: typeof fr = {
   tables_trend_down: 'slipping',
   tables_session_done: 'Session finished!',
   tables_view_panorama: 'See my tables',
+  tables_choose: 'Pick a table',
+  tables_mix: 'Adaptive mix',
+  tables_table_of: 'Table of',
+
+  parent_space: 'Parent area',
+  parent_gate_title: 'Grown-ups only',
+  parent_gate_hint: 'Answer to continue:',
+  parent_gate_placeholder: 'Answer',
+  parent_gate_wrong: 'Wrong answer, try again.',
+  parent_gate_enter: 'Enter',
+  tester_banner: 'Parent mode: nothing you try is saved.',
+  tester_exit: 'Leave parent mode',
 
   chooseLevel: 'Choose your level',
   chooseExercise: 'Choose your exercise',

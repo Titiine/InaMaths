@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import type { Route } from '../App'
 import { useGame } from '../state/GameContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LANGUAGES } from '../i18n/translations'
 import { Avatar } from '../components/Avatar'
 import { TopBar } from '../components/TopBar'
+import { ParentGate } from '../components/ParentGate'
 
 export function HomeScreen({ navigate }: { navigate: (r: Route) => void }) {
-  const { avatar } = useGame()
+  const { avatar, testerMode, enterTesterMode } = useGame()
   const { t, lang, setLang } = useLanguage()
+  const [showGate, setShowGate] = useState(false)
 
   return (
     <>
@@ -84,6 +87,22 @@ export function HomeScreen({ navigate }: { navigate: (r: Route) => void }) {
           </button>
         ))}
       </div>
+
+      {!testerMode && (
+        <button className="parent-link" onClick={() => setShowGate(true)}>
+          👪 {t('parent_space')}
+        </button>
+      )}
+
+      {showGate && (
+        <ParentGate
+          onSuccess={() => {
+            setShowGate(false)
+            enterTesterMode()
+          }}
+          onClose={() => setShowGate(false)}
+        />
+      )}
     </>
   )
 }

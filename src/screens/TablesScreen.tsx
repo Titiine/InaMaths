@@ -115,8 +115,25 @@ export function TablesScreen({ back, navigate }: { back: () => void; navigate: (
         </div>
       )}
 
+      {/* Choix d'une table précise (ou mélange adaptatif) */}
+      <h3 className="section-title" style={{ fontSize: 18, marginTop: 20 }}>
+        📚 {t('tables_choose')}
+      </h3>
+      <div className="row" style={{ flexWrap: 'wrap', gap: 8 }}>
+        {FACTORS.map((n) => (
+          <button
+            key={`t${n}`}
+            className="pill"
+            style={{ fontSize: 16, minWidth: 44 }}
+            onClick={() => navigate({ name: 'multiplication', table: n })}
+          >
+            × {n}
+          </button>
+        ))}
+      </div>
+
       <button className="btn green" style={{ marginTop: 22 }} onClick={() => navigate({ name: 'multiplication' })}>
-        ▶ {t('tables_train')}
+        🎲 {t('tables_mix')}
       </button>
 
       <button

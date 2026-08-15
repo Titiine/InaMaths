@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import type { ReactNode } from 'react'
 import type { AvatarConfig, AvatarType, GameState } from '../types'
 import { findOption, CATALOG } from '../data/catalog'
@@ -49,16 +49,39 @@ interface GameContextValue extends GameState {
   recordTableResult: (a: number, b: number, correct: boolean) => void
   resetTables: () => void
   resetProgress: () => void
+  // Mode testeur / parent : rien n'est enregistré pendant qu'il est actif.
+  testerMode: boolean
+  enterTesterMode: () => void
+  exitTesterMode: () => void
 }
 
 const GameContext = createContext<GameContextValue | null>(null)
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<GameState>(loadState)
+  const [testerMode, setTesterMode] = useState(false)
+  // Sauvegarde de l'état réel de l'enfant pendant le mode testeur.
+  const realStateBackup = useRef<GameState | null>(null)
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-  }, [state])
+    // On n'écrit jamais sur le disque tant que le mode testeur est actif :
+    // les essais du parent ne touchent donc pas le compte de l'enfant.
+    if (!testerMode) localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  }, [state, testerMode])
+
+  const enterTesterMode = useCallback(() => {
+    setState((s) => {
+      realStateBackup.current = s // mémorise l'état réel
+      return s
+    })
+    setTesterMode(true)
+  }, [])
+
+  const exitTesterMode = useCallback(() => {
+    setTesterMode(false)
+    if (realStateBackup.current) setState(realStateBackup.current) // restaure l'état réel
+    realStateBackup.current = null
+  }, [])
 
   const isOwned = useCallback(
     (id: string | null) => {
@@ -138,6 +161,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
       recordTableResult,
       resetTables,
       resetProgress,
+      testerMode,
+      enterTesterMode,
+      exitTesterMode,
     }),
     [
       state,
@@ -151,6 +177,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
       recordTableResult,
       resetTables,
       resetProgress,
+      testerMode,
+      enterTesterMode,
+      exitTesterMode,
     ],
   )
 

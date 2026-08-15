@@ -150,7 +150,7 @@ export function priorityFacts(stats: Record<string, number[]>, max = 6): Fact[] 
 
 // Couleurs du panorama (cohérentes avec le thème).
 export const STATUS_COLOR: Record<MasteryStatus, string> = {
-  known: '#2ec4b6', // vert-bleu
+  known: '#2fbf71', // vert franc « c'est acquis »
   fluctuating: '#ff8c42', // orange
   weak: '#ef476f', // rouge
   new: '#d8d2f5', // gris-mauve clair
