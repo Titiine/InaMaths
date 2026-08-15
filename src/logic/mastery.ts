@@ -124,6 +124,49 @@ export interface MasterySummary {
   total: number
 }
 
+// Mélange un tableau (copie).
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
+// Construit 4 choix (la bonne réponse + 3 distracteurs proches) pour a × b.
+export function buildChoices(a: number, b: number): number[] {
+  const answer = a * b
+  const candidates = [
+    answer + 1,
+    answer - 1,
+    answer + 2,
+    answer - 2,
+    a * (b + 1),
+    a * (b - 1),
+    (a + 1) * b,
+    answer + 10,
+  ]
+  const distractors = new Set<number>()
+  for (const c of shuffle(candidates)) {
+    if (c > 0 && c !== answer) distractors.add(c)
+    if (distractors.size >= 3) break
+  }
+  let extra = answer + 3
+  while (distractors.size < 3) {
+    if (extra !== answer && extra > 0) distractors.add(extra)
+    extra++
+  }
+  return shuffle([answer, ...distractors])
+}
+
+// Nombre de faits actuellement « sus ».
+export function knownCount(stats: Record<string, number[]>): number {
+  let n = 0
+  for (const f of allFacts()) if (getStatus(stats[factKey(f.a, f.b)]) === 'known') n++
+  return n
+}
+
 export function summarize(stats: Record<string, number[]>): MasterySummary {
   const summary: MasterySummary = { known: 0, fluctuating: 0, weak: 0, new: 0, total: 0 }
   for (const f of allFacts()) {

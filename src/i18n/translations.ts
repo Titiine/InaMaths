@@ -66,6 +66,15 @@ const fr = {
   tables_choose: 'Choisir une table',
   tables_mix: 'Mélange adaptatif',
   tables_table_of: 'Table du',
+  tables_progress: 'Ta progression',
+
+  // Défi chrono
+  chrono_go: 'Défi chrono',
+  chrono_title: 'Défi chrono',
+  chrono_intro: 'Réponds à un maximum de multiplications en 60 secondes !',
+  chrono_start: 'C\'est parti !',
+  chrono_best: 'Meilleur score',
+  chrono_record: 'Nouveau record ! 🎉',
 
   // Espace parent / testeur
   parent_space: 'Espace parent',
@@ -215,6 +224,14 @@ const en: typeof fr = {
   tables_choose: 'Pick a table',
   tables_mix: 'Adaptive mix',
   tables_table_of: 'Table of',
+  tables_progress: 'Your progress',
+
+  chrono_go: 'Time challenge',
+  chrono_title: 'Time challenge',
+  chrono_intro: 'Answer as many multiplications as you can in 60 seconds!',
+  chrono_start: 'Go!',
+  chrono_best: 'Best score',
+  chrono_record: 'New record! 🎉',
 
   parent_space: 'Parent area',
   parent_gate_title: 'Grown-ups only',

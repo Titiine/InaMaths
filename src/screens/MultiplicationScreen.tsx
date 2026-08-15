@@ -3,7 +3,7 @@ import type { Route } from '../App'
 import { useGame } from '../state/GameContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { TopBar } from '../components/TopBar'
-import { pickAdaptiveFacts, FACTORS } from '../logic/mastery'
+import { pickAdaptiveFacts, FACTORS, buildChoices } from '../logic/mastery'
 import type { Fact } from '../logic/mastery'
 
 const SESSION_SIZE = 8
@@ -16,31 +16,6 @@ function shuffle<T>(arr: T[]): T[] {
     ;[a[i], a[j]] = [a[j], a[i]]
   }
   return a
-}
-
-function buildChoices(a: number, b: number): number[] {
-  const answer = a * b
-  const candidates = [
-    answer + 1,
-    answer - 1,
-    answer + 2,
-    answer - 2,
-    a * (b + 1),
-    a * (b - 1),
-    (a + 1) * b,
-    answer + 10,
-  ]
-  const distractors = new Set<number>()
-  for (const c of shuffle(candidates)) {
-    if (c > 0 && c !== answer) distractors.add(c)
-    if (distractors.size >= 3) break
-  }
-  let extra = answer + 3
-  while (distractors.size < 3) {
-    if (extra !== answer && extra > 0) distractors.add(extra)
-    extra++
-  }
-  return shuffle([answer, ...distractors])
 }
 
 interface Q extends Fact {

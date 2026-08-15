@@ -8,6 +8,7 @@ import { AvatarScreen } from './screens/AvatarScreen'
 import { GameScreen } from './screens/GameScreen'
 import { TablesScreen } from './screens/TablesScreen'
 import { MultiplicationScreen } from './screens/MultiplicationScreen'
+import { ChronoScreen } from './screens/ChronoScreen'
 import { TesterBanner } from './components/TesterBanner'
 
 export type Route =
@@ -20,6 +21,7 @@ export type Route =
   | { name: 'game' }
   | { name: 'tables' }
   | { name: 'multiplication'; table?: number }
+  | { name: 'chrono' }
 
 export function App() {
   const [route, setRoute] = useState<Route>({ name: 'home' })
@@ -43,6 +45,7 @@ export function App() {
       {route.name === 'multiplication' && (
         <MultiplicationScreen table={route.table} back={() => navigate({ name: 'tables' })} navigate={navigate} />
       )}
+      {route.name === 'chrono' && <ChronoScreen back={() => navigate({ name: 'tables' })} navigate={navigate} />}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import type { Route } from '../App'
 import { useGame } from '../state/GameContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { TopBar } from '../components/TopBar'
+import { HistoryChart } from '../components/HistoryChart'
 import {
   FACTORS,
   factKey,
@@ -24,7 +25,7 @@ const LEGEND_KEY: Record<MasteryStatus, TranslationKey> = {
 
 export function TablesScreen({ back, navigate }: { back: () => void; navigate: (r: Route) => void }) {
   const { t } = useLanguage()
-  const { tableStats, resetTables } = useGame()
+  const { tableStats, tableHistory, chronoBest, resetTables } = useGame()
 
   const summary = summarize(tableStats)
   const priority = priorityFacts(tableStats, 8)
@@ -52,6 +53,16 @@ export function TablesScreen({ back, navigate }: { back: () => void; navigate: (
           <div className="progress-fill" style={{ width: `${masteredPct}%` }} />
         </div>
       </div>
+
+      {/* Courbe de progression (jour après jour) */}
+      {tableHistory.length >= 2 && (
+        <div className="card" style={{ marginBottom: 14 }}>
+          <div className="row" style={{ justifyContent: 'space-between', fontWeight: 700, marginBottom: 6 }}>
+            <span>📈 {t('tables_progress')}</span>
+          </div>
+          <HistoryChart data={tableHistory} max={summary.total} />
+        </div>
+      )}
 
       {/* Panorama : table de multiplication colorée */}
       <p className="muted" style={{ fontSize: 13, marginBottom: 8 }}>
@@ -134,6 +145,10 @@ export function TablesScreen({ back, navigate }: { back: () => void; navigate: (
 
       <button className="btn green" style={{ marginTop: 22 }} onClick={() => navigate({ name: 'multiplication' })}>
         🎲 {t('tables_mix')}
+      </button>
+
+      <button className="btn accent" style={{ marginTop: 12 }} onClick={() => navigate({ name: 'chrono' })}>
+        ⏱️ {t('chrono_go')} · 🏆 {chronoBest}
       </button>
 
       <button

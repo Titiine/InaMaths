@@ -39,4 +39,8 @@ export interface GameState {
   // Historique de réponses par fait de multiplication, clé "aXb" -> [0|1, ...]
   // (le plus récent à la fin). Sert au suivi de maîtrise des tables.
   tableStats: Record<string, number[]>
+  // Instantané quotidien du nombre de tables « sues » (pour la courbe de progression).
+  tableHistory: { date: string; known: number }[]
+  // Meilleur score au défi chrono (nombre de bonnes réponses).
+  chronoBest: number
 }

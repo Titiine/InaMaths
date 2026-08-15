@@ -406,6 +406,42 @@ button {
   border-radius: var(--radius);
 }
 
+/* --- Défi chrono --- */
+.chrono-hud {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 8px 2px 4px;
+}
+
+.chrono-bar {
+  flex: 1;
+  height: 14px;
+  border-radius: 999px;
+  background: #e7e2fb;
+  overflow: hidden;
+}
+
+.chrono-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff6392, #ff8c42);
+  transition: width 0.1s linear;
+}
+
+.chrono-low {
+  color: var(--danger);
+  animation: blink 0.6s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.4;
+  }
+}
+
 /* --- Mode parent / testeur --- */
 .tester-banner {
   position: sticky;

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, useCallback, u
 import type { ReactNode } from 'react'
 import type { AvatarConfig, AvatarType, GameState } from '../types'
 import { findOption, CATALOG } from '../data/catalog'
-import { factKey, pushResult } from '../logic/mastery'
+import { factKey, pushResult, knownCount } from '../logic/mastery'
 
 const STORAGE_KEY = 'inamaths.state'
 
@@ -20,6 +20,8 @@ const DEFAULT_STATE: GameState = {
   ownedItems: [],
   avatar: DEFAULT_AVATAR,
   tableStats: {},
+  tableHistory: [],
+  chronoBest: 0,
 }
 
 function loadState(): GameState {
@@ -32,10 +34,34 @@ function loadState(): GameState {
       ownedItems: Array.isArray(parsed.ownedItems) ? parsed.ownedItems : [],
       avatar: { ...DEFAULT_AVATAR, ...parsed.avatar, clothes: { ...DEFAULT_AVATAR.clothes, ...parsed.avatar?.clothes } },
       tableStats: parsed.tableStats && typeof parsed.tableStats === 'object' ? parsed.tableStats : {},
+      tableHistory: Array.isArray(parsed.tableHistory) ? parsed.tableHistory : [],
+      chronoBest: typeof parsed.chronoBest === 'number' ? parsed.chronoBest : 0,
     }
   } catch {
     return DEFAULT_STATE
   }
+}
+
+const HISTORY_CAP = 30
+
+// Renvoie la date du jour au format AAAA-MM-JJ (heure locale).
+function today(): string {
+  const d = new Date()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
+
+// Met à jour l'instantané du jour dans l'historique (upsert).
+function upsertHistory(history: { date: string; known: number }[], known: number) {
+  const date = today()
+  const last = history[history.length - 1]
+  if (last && last.date === date) {
+    const copy = history.slice()
+    copy[copy.length - 1] = { date, known }
+    return copy
+  }
+  return [...history, { date, known }].slice(-HISTORY_CAP)
 }
 
 interface GameContextValue extends GameState {
@@ -47,6 +73,7 @@ interface GameContextValue extends GameState {
   setAvatarPart: (key: 'bodyColor' | 'eyes' | 'mouth' | 'accessory', id: string | null) => void
   setAvatarClothes: (zone: 'head' | 'belly' | 'legs', id: string | null) => void
   recordTableResult: (a: number, b: number, correct: boolean) => void
+  submitChronoScore: (score: number) => boolean
   resetTables: () => void
   resetProgress: () => void
   // Mode testeur / parent : rien n'est enregistré pendant qu'il est actif.
@@ -138,12 +165,26 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const recordTableResult = useCallback((a: number, b: number, correct: boolean) => {
     setState((s) => {
       const key = factKey(a, b)
-      return { ...s, tableStats: { ...s.tableStats, [key]: pushResult(s.tableStats[key], correct) } }
+      const tableStats = { ...s.tableStats, [key]: pushResult(s.tableStats[key], correct) }
+      const tableHistory = upsertHistory(s.tableHistory, knownCount(tableStats))
+      return { ...s, tableStats, tableHistory }
     })
   }, [])
 
+  const submitChronoScore = useCallback((score: number) => {
+    let record = false
+    setState((s) => {
+      if (score > s.chronoBest) {
+        record = true
+        return { ...s, chronoBest: score }
+      }
+      return s
+    })
+    return record
+  }, [])
+
   const resetTables = useCallback(() => {
-    setState((s) => ({ ...s, tableStats: {} }))
+    setState((s) => ({ ...s, tableStats: {}, tableHistory: [], chronoBest: 0 }))
   }, [])
 
   const resetProgress = useCallback(() => setState(DEFAULT_STATE), [])
@@ -159,6 +200,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       setAvatarPart,
       setAvatarClothes,
       recordTableResult,
+      submitChronoScore,
       resetTables,
       resetProgress,
       testerMode,
@@ -175,6 +217,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       setAvatarPart,
       setAvatarClothes,
       recordTableResult,
+      submitChronoScore,
       resetTables,
       resetProgress,
       testerMode,
